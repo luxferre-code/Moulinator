@@ -32,7 +32,12 @@ public sealed class Joueur permits Bot{
 
 
     public boolean chooseIsYours(){
-        if
+        //if
+        return false;
+    }
+
+    public int chooseSlotOwned() throws NoHavingSlotException {
+        return 0;
     }
 
     public String toString(){
