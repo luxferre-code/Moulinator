@@ -6,6 +6,7 @@ import java.util.Objects;
 public class Slot implements Serializable {
 
     private Joueur owner, exOwner;
+    private int coordx,coordy;
 
     public Slot() { }
 
@@ -15,6 +16,14 @@ public class Slot implements Serializable {
 
     public Joueur getOwner() {
         return owner;
+    }
+
+    public int getx(){
+        return coordx;
+    }
+
+    public int gety(){
+        return coordy;
     }
 
     public Joueur getExOwner() {
