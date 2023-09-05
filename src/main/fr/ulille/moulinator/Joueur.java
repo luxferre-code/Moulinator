@@ -1,21 +1,39 @@
 package fr.ulille.moulinator;
 
-import java.awt.Color;
-
-public class Joueur{
+public sealed class Joueur permits Bot{
     public final String NAME;
-    private Color BaseColor;
+    private Color color;
+    private static final Color BASE_COLOR = Color.ANSI_RED;
     public  int onBoard;
     public boolean allPlaced;
 
     public Joueur(String name, Color color, int onBoard, boolean allPlaced){
         this.NAME = name;
-        this.BaseColor = color;
         this.onBoard = onBoard;
         this.allPlaced = allPlaced;
+        this.color = color;
     }
 
-    public
+    public Joueur(String name, Color color){
+        this.NAME = name;
+        this.color = color;
+    }
+    
+    public Joueur(String name){
+        this.NAME = name;
+        this.color = BASE_COLOR;
+    }
+
+    public String toString(){
+        return  this.color + "X" + Color.ANSI_RESET;
+    }
+
+    public static void main(String[] args) {
+        Joueur j = new Joueur("test");
+        System.out.println(j);
+    }
+
+
 
 
 
