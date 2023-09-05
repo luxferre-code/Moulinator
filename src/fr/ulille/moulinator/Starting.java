@@ -23,7 +23,6 @@ public class Starting {
             e.printStackTrace();
         }
 
-
         Menu m = new Menu();
         m.choose();
     }

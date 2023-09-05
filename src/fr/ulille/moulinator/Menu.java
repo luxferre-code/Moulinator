@@ -16,14 +16,13 @@ public class Menu{
         System.out.println(sb.toString());
         Scanner sc = new Scanner(System.in);
         String str="0";
-        while(!str.equals("1") && !str.equals("2") && !str.equals("3")){
-            System.out.println("Choose a Gamemode: \n1. Play with a player \n2. Play with a bot \n3. Bot vs Bot");
+        while(!str.equals("1") && !str.equals("2") && !str.equals("3") && !str.equals("4"  )  && !str.equals("5")){
+            System.out.println("Choose a Gamemode: \n1. Play with a player \n2. Play with a bot \n3. Bot vs Bot \n4. Regles du jeu \n5. Quitter");
             str = sc.next(); 
         }
         if(str.equals("1")){
             System.out.println("Lance un 1V1");
         }
-        else{
             if(str.equals("2")){
                 str="0";
                 while(!str.equals("1") && !str.equals("2")){
@@ -37,8 +36,7 @@ public class Menu{
                     System.out.println("Bot hard");
                 }
             }
-            else{
-                str="0";
+            if (str.equals("3")) {
                 while(!str.equals("1") && !str.equals("2")){
                     System.out.println("Choose the bots: \n1. Easy bots \n2. Hard bots");
                     str = sc.next(); 
@@ -48,10 +46,27 @@ public class Menu{
                 }
                 else{
                     System.out.println("Bots3 hard");
+                    }
+            } 
+            if(str.equals("4")){
+                System.out.println("Regles du jeu");
+                File f2= new File("regles.txt");
+                FileReader fr2= new FileReader(f2);
+                BufferedReader br2 = new BufferedReader(fr2);     
+                String line2;
+                while((line2 = br2.readLine()) != null){
+                    System.out.println(line2);
                 }
+                fr2.close();
             }
-        }
+            
+            if(str.equals("5")){
+                    System.out.println("Au revoir");
+                    System.exit(0);
+            }
+        
     }
+
     public static void main(String[] args) throws IOException{
     Menu  m= new Menu();
     m.choose();
