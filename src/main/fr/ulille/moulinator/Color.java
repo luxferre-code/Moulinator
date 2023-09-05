@@ -1,6 +1,8 @@
 package fr.ulille.moulinator;
 
-public enum Color {
+import java.io.Serializable;
+
+public enum Color implements Serializable {
     ANSI_RESET("\u001B[0m"),
     ANSI_BLACK("\u001B[30m"),
     ANSI_RED("\u001B[31m"),
@@ -26,7 +28,7 @@ public enum Color {
     }
 
     public String toString(){
-        return this.colorCode +"";
+        return this.colorCode;
     }
     public String showColor(){
         return this.colorCode + "This text is "+ getColor() + ANSI_RESET;

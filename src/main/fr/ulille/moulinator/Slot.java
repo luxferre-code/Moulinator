@@ -1,8 +1,9 @@
 package fr.ulille.moulinator;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Slot {
+public class Slot implements Serializable {
 
     private Joueur owner, exOwner;
 
@@ -21,6 +22,10 @@ public class Slot {
     }
 
     public boolean changeOwner(Joueur newOwner) {
+        if(this.owner == null) {
+            this.owner = newOwner;
+            return true;
+        }
         if(!this.owner.equals(newOwner)) {
             this.exOwner = this.owner;
             this.owner = newOwner;
