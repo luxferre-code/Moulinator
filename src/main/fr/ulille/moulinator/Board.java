@@ -1,9 +1,10 @@
 package fr.ulille.moulinator;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.*;
 
-public class Board implements Iterable<Slot> {
+public class Board implements Iterable<Slot>, Serializable {
 
     public int height, width;
     private List<List<Slot>> slots;
@@ -92,9 +93,10 @@ public class Board implements Iterable<Slot> {
             e.printStackTrace();
         }
         // Remplacement des slots par les joueurs
-        int x = 1;
+        int x = 0;
         for(Slot s : this) {
-            board = board.replaceFirst(x + "", s.toString());
+            if((char) ('A' + x) == 'X') { x++; }
+            board = board.replaceFirst((char) ('A' + x) + "", s.toString());
             x++;
         }
         return board;
@@ -176,4 +178,67 @@ public class Board implements Iterable<Slot> {
     public void setJoueurOnSlot(int slot, Joueur j) {
         this.concat2DList().get(slot).changeOwner(j);
     }
+
+    public boolean sontAligne(Slot s){
+        boolean renvoi=false;
+        int x=s.getx();
+        if(this.slots.get(x).size()==height){
+            renvoi = true;
+            for(int j=0; j<height;j++){
+                if(!this.slots.get(x).get(j).getOwner().equals(s.getOwner())){
+                    renvoi=false;
+                }
+            }
+        }
+        else{
+            for(int i=0; i<2;i++){
+                boolean tempo = true;
+                for(int j=0; j<this.height;j++){
+                    if(!slots.get(x).get(i*3+j).getOwner().equals(s.getOwner())){
+                        tempo=false;
+                    }
+                }
+                if(tempo){
+                    renvoi=tempo;
+                }
+            }
+        }
+        if(renvoi){
+            return renvoi;
+        }
+        for(int i=0;i<this.height;i++){
+            renvoi = true;
+            for(int j=0;j<this.height;j++){
+                if(!slots.get(j*(3-i)).get(i).getOwner().equals(s.getOwner())){
+                    renvoi=false;
+                }
+            }
+            if(renvoi){
+                return renvoi;
+            }
+            for(int j=0;j<this.height;j++){
+                if(!slots.get(j*(3-i)).get(this.height*2+1-i).getOwner().equals(s.getOwner())){
+                    renvoi=false;
+                }
+            }
+            if(renvoi){
+                return renvoi;
+            }
+        }
+        for(int i=0; i<this.height;i++){
+        boolean check1=true;
+        boolean check2=true;
+        if(!slots.get(i).get(2).equals(s.getOwner())){
+        check1=false;
+        }
+        if(!slots.get(3+i).get(2).equals(s.getOwner())){
+        check2=false;
+        }
+        if(check1||check2){
+        return true;
+        }
+        }
+            return false;
+        }        
+
 }

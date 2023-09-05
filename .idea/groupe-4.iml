@@ -9,5 +9,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="json-java" level="project" />
+    <orderEntry type="library" name="junit-platform-console-standalone-1.9.3" level="project" />
   </component>
 </module>

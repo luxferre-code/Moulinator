@@ -1,8 +1,11 @@
 package test.fr.ulille.moulinator;
 
 import fr.ulille.moulinator.Joueur;
+import fr.ulille.moulinator.NoHavingSlotException;
+import fr.ulille.moulinator.Color;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -24,6 +27,11 @@ public class TestJoueur {
         assertEquals("Valentin",v.getName());
         assertEquals("Adham",a.getName());
         assertNotEquals("Hocine",v.getName());
+    }
+
+    @Test
+    public void testChooseSlotOwned() throws NoHavingSlotException{
+        assertEquals("No slot owned",h.chooseSlotOwned('f'));
     }
 
 

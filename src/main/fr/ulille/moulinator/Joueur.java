@@ -1,15 +1,15 @@
 package fr.ulille.moulinator;
 
-import java.util.Collections;
-import java.util.List;
+
+import java.io.Serializable;
 
 /**
  * <p>La classe qui initialise des joueur</p>
  * @author HOCINE CHEBOUT
  * @author VALENTIN THUILLER
  */
-public sealed class Joueur permits Bot{
     
+public sealed class Joueur implements Serializable permits Bot {
     public final String NAME;
     private Color color;
     private static final Color BASE_COLOR = Color.ANSI_RED;
@@ -36,6 +36,10 @@ public sealed class Joueur permits Bot{
         this.color = BASE_COLOR;
     }
 
+    public Joueur(){
+        this.NAME = "undefined";
+        this.color = BASE_COLOR;
+    }
     public String getName(){
         return this.NAME;
     }
@@ -84,7 +88,7 @@ public sealed class Joueur permits Bot{
     public void move(char c, char d) throws NoHavingSlotException, SlotHavingOwnerException{
         int first = chooseSlotOwned(c);
         int to = chooseSlotToMove(d);
-        Game.BOARD.moveSlot(first, to);
+        Game.Board.moveSlot(first, to);
     }
     
 

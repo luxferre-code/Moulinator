@@ -1,10 +1,12 @@
 package fr.ulille.moulinator;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Slot {
+public class Slot implements Serializable {
 
     private Joueur owner, exOwner;
+    private int coordx,coordy;
 
     public Slot() { }
 
@@ -14,6 +16,14 @@ public class Slot {
 
     public Joueur getOwner() {
         return owner;
+    }
+
+    public int getx(){
+        return coordx;
+    }
+
+    public int gety(){
+        return coordy;
     }
 
     public Joueur getExOwner() {
