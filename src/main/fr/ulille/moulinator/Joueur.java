@@ -60,9 +60,8 @@ public sealed class Joueur implements Serializable permits Bot {
 
     public boolean chooseIsValid(char c){
         String tmp = c+"";
-        tmp.toLowerCase();
-        char newC = tmp.charAt(0);
-        if(newC>='a' || newC<='x'){
+        char newC = tmp.toLowerCase().charAt(0);
+        if(newC>='a' && newC<='x'){
             return true;
         }
         return false;
@@ -102,6 +101,10 @@ public sealed class Joueur implements Serializable permits Bot {
         System.out.println(j.toString());
         System.out.println(j.color.getColor());
         System.out.println(j.chooseIsYours(BASE_COLOR));
+        System.out.println(j.chooseIsValid('z'));
+        System.out.println("-----------");
+        System.out.println(j.chooseIsValid('A'));
+        System.out.println('e');
     }
 
 }
