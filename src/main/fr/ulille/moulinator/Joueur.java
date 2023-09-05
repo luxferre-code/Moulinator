@@ -37,7 +37,6 @@ public sealed class Joueur permits Bot{
         return this.NAME;
     }
 
-<<<<<<< HEAD
     public boolean chooseIsYours(Color myColor){
         if(this.color.equals(myColor)){
             return true;
@@ -51,7 +50,7 @@ public sealed class Joueur permits Bot{
             return true;
         }
         return false;
-=======
+    }
     public boolean chooseIsYours(){
         //if
         return false;
@@ -59,7 +58,6 @@ public sealed class Joueur permits Bot{
 
     public int chooseSlotOwned() throws NoHavingSlotException {
         return 0;
->>>>>>> 3d8b544321894f298441931b091a9adf8396c61c
     }
 
     public String toString(){
