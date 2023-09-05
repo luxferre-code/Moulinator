@@ -39,7 +39,7 @@ public class TestJoueur {
     }
 
     @Test
-    public void testChooseSlotOwned() throws NoHavingSlotException{
+    public void testChooseSlotOwned() throws Exception{
         assertEquals(0,h.chooseSlotOwned('a'));
         assertEquals(1,v.chooseSlotOwned('b'));
         assertEquals(4,a.chooseSlotOwned('e'));
