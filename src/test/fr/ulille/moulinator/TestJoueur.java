@@ -1,4 +1,5 @@
 package test.fr.ulille.moulinator;
+import fr.ulille.moulinator.Board;
 import fr.ulille.moulinator.Joueur;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -40,11 +41,39 @@ public class TestJoueur {
 
     @Test
     public void testChooseSlotOwned() throws Exception{
+        Board b = new Board();
+        b.setJoueurOnSlot(0, h);
+        b.setJoueurOnSlot(1, h);
+        b.setJoueurOnSlot(2, h);
+        b.setJoueurOnSlot(3, h);
+        b.setJoueurOnSlot(4, h);
+        b.setJoueurOnSlot(5, h);
+        b.setJoueurOnSlot(6, v);
+        b.setJoueurOnSlot(7, v);
+        b.setJoueurOnSlot(8, v);
+        b.setJoueurOnSlot(9, v);
+        b.setJoueurOnSlot(10, v);
+        b.setJoueurOnSlot(11, v);
         assertEquals(0,h.chooseSlotOwned('a'));
-        assertEquals(1,v.chooseSlotOwned('b'));
-        assertEquals(4,a.chooseSlotOwned('e'));
-        assertNotEquals(0,h.chooseSlotOwned('z'));
-        assertEquals(0,v.chooseSlotOwned('A'));
+        assertEquals(6,v.chooseSlotOwned('g'));
+
+    }
+    public void testChooseSlotToMove() throws Exception{
+        Board b = new Board();
+        b.setJoueurOnSlot(0, h);
+        b.setJoueurOnSlot(1, h);
+        b.setJoueurOnSlot(2, h);
+        b.setJoueurOnSlot(3, h);
+        b.setJoueurOnSlot(4, h);
+        b.setJoueurOnSlot(5, h);
+        b.setJoueurOnSlot(6, v);
+        b.setJoueurOnSlot(7, v);
+        b.setJoueurOnSlot(8, v);
+        b.setJoueurOnSlot(9, v);
+        b.setJoueurOnSlot(10, v);
+        b.setJoueurOnSlot(11, v);
+        assertEquals(0,h.chooseSlotToMove('a'));
+        assertEquals(6,v.chooseSlotToMove('g'));
     }
 
 

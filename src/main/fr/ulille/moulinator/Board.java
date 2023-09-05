@@ -177,6 +177,10 @@ public class Board implements Iterable<Slot>, Serializable {
 
     public void setJoueurOnSlot(int slot, Joueur j) {
         this.concat2DList().get(slot).changeOwner(j);
+        j.onBoard = j.onBoard + 1;
+        if(j.onBoard ==6) { 
+            j.allPlaced = true; 
+        }
     }
 
     public boolean sontAligne(Slot s){

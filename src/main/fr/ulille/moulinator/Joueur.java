@@ -76,7 +76,7 @@ public sealed class Joueur implements Serializable permits Bot {
     }
 
     public int chooseSlotToMove(char c) throws SlotHavingOwnerException {
-        if(this.allPlaced && chooseIsYours(this.color) && chooseIsValid(c)){
+        if(this.allPlaced && chooseIsYours(this.color) && chooseIsValid(c) ){
             int numberCase = (int) c-'a';
             return numberCase;
         }
@@ -98,6 +98,7 @@ public sealed class Joueur implements Serializable permits Bot {
     public static void main(String[] args) {
         Joueur j = new Joueur("Hocine");
         System.out.println(j.getName());
+        System.out.println();
         System.out.println(j.toString());
         System.out.println(j.color.getColor());
         System.out.println(j.chooseIsYours(BASE_COLOR));
