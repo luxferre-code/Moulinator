@@ -33,8 +33,4 @@ public sealed class Joueur permits Bot{
         System.out.println(j);
     }
 
-
-
-
-
 }
