@@ -1,5 +1,3 @@
-import java.awt.Color;
-
 public class Joueur{
     public final String NAME;
     private Color BaseColor;
@@ -12,8 +10,6 @@ public class Joueur{
         this.onBoard = onBoard;
         this.allPlaced = allPlaced;
     }
-
-    public
 
 
 

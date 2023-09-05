@@ -1,4 +1,4 @@
-public class Color {
+public enum Color {
     private String colorCode;
 
 
