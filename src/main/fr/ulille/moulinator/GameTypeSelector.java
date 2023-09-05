@@ -9,7 +9,7 @@ public class GameTypeSelector {
         for(GameType gameType : GameType.values()) {
             System.out.println(gameType.ordinal() + " - " + gameType.getName());
         }
-        try(Scanner sc = new Scanner(System.in)) {
+        try(Scanner sc = new Scanner(Game.INPUT_STREAM)) {
             System.out.print("Votre choix : ");
             int choice = sc.nextInt();
             if(choice < 0 || choice >= GameType.values().length) {

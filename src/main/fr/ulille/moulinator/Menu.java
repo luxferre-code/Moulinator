@@ -16,11 +16,11 @@ public class Menu {
         }
         fr.close();
         System.out.println(sb);
-        Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(Game.INPUT_STREAM);
         String str="0";
         while(!str.equals("1") && !str.equals("2") && !str.equals("3") && !str.equals("4"  )  && !str.equals("5")){
-            System.out.println("Choose a Gamemode: \n1. Play with a player \n2. Play with a bot \n3. Bot vs Bot \n4. Regles du jeu \n5. Quitter");
-            str = sc.next(); 
+            System.out.println("Choose a Gamemode: \n1. Play with a player \n2. Play with a bot \n3. Bot vs Bot \n4. Regles du jeu \n5. Exit");
+            str = sc.next();
         }
         if(str.equals("1")){
             System.out.println("Lance un 1V1");
@@ -51,7 +51,7 @@ public class Menu {
                     }
             } 
             if(str.equals("4")){
-                System.out.println("Regles du jeu");
+                System.out.println("Régles du jeu");
                 File f2= new File("regles.txt");
                 FileReader fr2= new FileReader(f2);
                 BufferedReader br2 = new BufferedReader(fr2);     
@@ -60,13 +60,17 @@ public class Menu {
                     System.out.println(line2);
                 }
                 fr2.close();
+                try(Scanner sc2 = new Scanner(Game.INPUT_STREAM)) {
+                    System.out.println("Appuyez sur entrée pour continuer");
+                    sc2.nextLine();
+                }
             }
             
             if(str.equals("5")){
                     System.out.println("Au revoir");
                     System.exit(0);
             }
-        
+        choose();
     }
 
     public static void main(String[] args) throws IOException{

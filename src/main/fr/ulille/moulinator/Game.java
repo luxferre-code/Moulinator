@@ -3,6 +3,7 @@ package fr.ulille.moulinator;
 import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
 
 public final class Game implements Serializable {
     
@@ -14,6 +15,7 @@ public final class Game implements Serializable {
     private Board Board_save;
     private boolean isPlayer1Turn_save;
     private static final long serialVersionUID = 1L;
+    public static final InputStream INPUT_STREAM = System.in;
 
     public static void logger(String s) {
         System.out.println(Color.ANSI_RED + s + Color.ANSI_RESET);

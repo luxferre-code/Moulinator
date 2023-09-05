@@ -24,11 +24,8 @@ public class Starting {
                 }
             }
             for (int i = 0; i<taille; i =i + 1){
-                
                 for (int j = 0; j< texte.size(); j = j+1){
-                    
                     if (texte.get(j).length() >= i){
-                        
                         System.out.println(texte.get(j).substring(0, i));
                     } else {
                         System.out.println(texte.get(j));

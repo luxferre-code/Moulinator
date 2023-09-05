@@ -16,6 +16,7 @@ public enum Color implements Serializable {
 
 
     private final String colorCode;
+    private boolean isUsed = false;
 
     Color(String colorCode){
         this.colorCode = colorCode;
@@ -39,5 +40,12 @@ public enum Color implements Serializable {
         System.out.println(colorCode.showColor());
         System.out.println(colorCode.getColor());
     }
-    
+
+    public boolean isUsed() {
+        return isUsed;
+    }
+
+    public void setUsed(boolean used) {
+        isUsed = used;
+    }
 }
