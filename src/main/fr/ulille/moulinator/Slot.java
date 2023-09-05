@@ -49,4 +49,10 @@ public class Slot {
     public int hashCode() {
         return Objects.hash(getOwner(), getExOwner());
     }
+
+    @Override
+    public String toString() {
+        if(owner == null) { return "O"; }
+        return owner.toString();
+    }
 }
