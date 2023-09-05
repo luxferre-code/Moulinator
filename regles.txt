@@ -1,0 +1,15 @@
+Règles du MOULINATOR
+
+Le MOULINATOR oppose deux joueurs sur un plateau composé de quatre carrés concentriques reliés au centre de leurs quatre côtés par des lignes perpendiculaires. 
+Le jeu se déroule sur les 24 points du tableau (les intersections et les sommets des carrés).
+Chaque joueur possède 9 pions.
+
+Déroulement de la partie :
+Chaque joueur peut tour a tour placer un pion sur un des points du tableau.
+Si un joueur aligne 3 pions an suivant les lignes il crée ce qu'on appelle un moulin ce qui lui permet d'enlever un pion de l'adversaire du jeu qui n'appartient pas a un moulin.
+Une fois que les joueurs ont placé tous leurs pions ils passent à la phase de mouvement.
+La phase de mouvement consiste a déplacer un de ses pions vers un de ses points adjacent. 
+De la meme manière si ce mouvement crée un moulin le joueur pourra enlever un pion de l'adversaire du jeu qui n'appartient pas a un moulin.
+
+But du jeu :
+Enlever les pions de l'adversaire jusqu'à ce qu'il n'en ai que deux afin de gagner la partie.
