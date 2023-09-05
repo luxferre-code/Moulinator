@@ -162,6 +162,9 @@ public class Board implements Iterable<Slot> {
 
     public static void main(String[] args) {
         System.out.println("Hello world!");
+        Board b = new Board();
+        b.initBoard();
+        System.out.println(b);
     }
 
     public void moveSlot(int first, int to) {

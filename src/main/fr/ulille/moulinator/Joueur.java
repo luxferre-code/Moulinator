@@ -1,5 +1,7 @@
 package fr.ulille.moulinator;
 
+import java.util.Collections;
+import java.util.List;
 
 /**
  * <p>La classe qui initialise des joueur</p>
@@ -7,6 +9,7 @@ package fr.ulille.moulinator;
  * @author VALENTIN THUILLER
  */
 public sealed class Joueur permits Bot{
+    
     public final String NAME;
     private Color color;
     private static final Color BASE_COLOR = Color.ANSI_RED;
@@ -46,19 +49,44 @@ public sealed class Joueur permits Bot{
 
     public boolean choose(){
         if(chooseIsYours(this.color)){
-            
             return true;
         }
         return false;
     }
-    public boolean chooseIsYours(){
-        //if
+
+    public boolean chooseIsValid(char c){
+        String tmp = c+"";
+        tmp.toLowerCase();
+        char newC = tmp.charAt(0);
+        if(newC>='a' || newC<='x'){
+            return true;
+        }
         return false;
+        }
+
+    public int chooseSlotOwned(char c) throws NoHavingSlotException {
+        if(this.allPlaced && chooseIsYours(this.color) && chooseIsValid(c)){
+            int numberCase = (int) c-'a';
+            return numberCase;
+        }
+        throw new NoHavingSlotException("No slot owned");
     }
 
-    public int chooseSlotOwned() throws NoHavingSlotException {
-        return 0;
+    public int chooseSlotToMove(char c) throws SlotHavingOwnerException {
+        if(this.allPlaced && chooseIsYours(this.color) && chooseIsValid(c)){
+            int numberCase = (int) c-'a';
+            return numberCase;
+        }
+        throw new SlotHavingOwnerException("No free slot");
+
     }
+
+    public void move(char c, char d) throws NoHavingSlotException, SlotHavingOwnerException{
+        int first = chooseSlotOwned(c);
+        int to = chooseSlotToMove(d);
+        Game.BOARD.moveSlot(first, to);
+    }
+    
 
     public String toString(){
         return  this.color + "X" + Color.ANSI_RESET;
