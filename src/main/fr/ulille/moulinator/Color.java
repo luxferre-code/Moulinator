@@ -28,13 +28,13 @@ public enum Color {
     public String toString(){
         return this.colorCode +"";
     }
-    public void showColor(){
-        System.out.println(ANSI_RED + "This text is red!" + ANSI_RESET);
+    public String showColor(){
+        return this.colorCode + "This text is "+ getColor() + ANSI_RESET;
     }
 
     public static void main(String[] args) {
-        Color colorCode = Color.ANSI_RED;
-        colorCode.showColor();
+        Color colorCode = Color.ANSI_PURPLE;
+        System.out.println(colorCode.showColor());
         System.out.println(colorCode.getColor());
     }
     
