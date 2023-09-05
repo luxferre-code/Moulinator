@@ -21,7 +21,8 @@ public enum Color {
 
 
     public String getColor(){
-        return this.colorCode;
+        return this.name().substring(5);
+        
     }
 
     public String toString(){
@@ -32,7 +33,9 @@ public enum Color {
     }
 
     public static void main(String[] args) {
-        System.out.println(ANSI_RED + "This text is red!" + ANSI_RESET);
+        Color colorCode = Color.ANSI_RED;
+        colorCode.showColor();
+        System.out.println(colorCode.getColor());
     }
     
 }
