@@ -10,7 +10,6 @@ public enum Color {
     ANSI_PURPLE("\u001B[35m"),
     ANSI_CYAN("\u001B[36m"),
     ANSI_WHITE("\u001B[37m"),
-    RESET("\u001B[0m");
 
 
     private final String colorCode;
