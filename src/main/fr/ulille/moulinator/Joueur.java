@@ -1,5 +1,11 @@
 package fr.ulille.moulinator;
 
+
+/**
+ * <p>La classe qui initialise des joueur</p>
+ * @author HOCINE CHEBOUT
+ * @author VALENTIN THUILLER
+ */
 public sealed class Joueur permits Bot{
     public final String NAME;
     private Color color;
@@ -22,6 +28,11 @@ public sealed class Joueur permits Bot{
     public Joueur(String name){
         this.NAME = name;
         this.color = BASE_COLOR;
+    }
+
+
+    public boolean chooseIsYours(){
+        if
     }
 
     public String toString(){
