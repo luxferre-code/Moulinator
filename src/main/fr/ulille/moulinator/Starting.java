@@ -1,6 +1,5 @@
-// package fr.ulille.moulinator;
+package fr.ulille.moulinator;
 
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -19,9 +18,7 @@ public class Starting {
                 System.out.println(ligne);
                 Thread.sleep(50);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        } catch (IOException ignored) {}
 
         Menu m = new Menu();
         m.choose();

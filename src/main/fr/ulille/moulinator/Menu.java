@@ -1,7 +1,9 @@
+package fr.ulille.moulinator;
+
 import java.util.Scanner;
 import java.io.*;
 
-public class Menu{
+public class Menu {
     public void choose() throws IOException{
         File f=new File("Logo.txt");
         FileReader fr= new FileReader(f);
@@ -13,7 +15,7 @@ public class Menu{
             sb.append("\n");     
         }
         fr.close();
-        System.out.println(sb.toString());
+        System.out.println(sb);
         Scanner sc = new Scanner(System.in);
         String str="0";
         while(!str.equals("1") && !str.equals("2") && !str.equals("3") && !str.equals("4"  )  && !str.equals("5")){
