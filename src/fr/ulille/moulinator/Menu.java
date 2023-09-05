@@ -16,24 +16,39 @@ public class Menu{
         System.out.println(sb.toString());
         Scanner sc = new Scanner(System.in);
         String str="0";
-        while(!str.equals("1") && !str.equals("2")){
-            System.out.println("1. Play with a player \n2. Play with a bot");
+        while(!str.equals("1") && !str.equals("2") && !str.equals("3")){
+            System.out.println("Choose a Gamemode: \n1. Play with a player \n2. Play with a bot \n3. Bot vs Bot");
             str = sc.next(); 
         }
         if(str.equals("1")){
             System.out.println("Lance un 1V1");
         }
         else{
-            str="0";
-            while(!str.equals("1") && !str.equals("2")){
-                System.out.println("1. Easy bot \n2. Hard bot");
-                str = sc.next(); 
-            }
-            if(str.equals("1")){
-                System.out.println("Bot simple");
+            if(str.equals("2")){
+                str="0";
+                while(!str.equals("1") && !str.equals("2")){
+                    System.out.println("Choose the bot: \n1. Easy bot \n2. Hard bot");
+                    str = sc.next(); 
+                }
+                if(str.equals("1")){
+                    System.out.println("Bot simple");
+                }
+                else{
+                    System.out.println("Bot hard");
+                }
             }
             else{
-                System.out.println("Bot hard");
+                str="0";
+                while(!str.equals("1") && !str.equals("2")){
+                    System.out.println("Choose the bots: \n1. Easy bots \n2. Hard bots");
+                    str = sc.next(); 
+                }
+                if(str.equals("1")){
+                    System.out.println("Bots simple");
+                }
+                else{
+                    System.out.println("Bots3 hard");
+                }
             }
         }
     }

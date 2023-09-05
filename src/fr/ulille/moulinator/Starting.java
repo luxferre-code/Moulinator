@@ -1,3 +1,5 @@
+package fr.ulille.moulinator;
+
 public class Starting {
 
 
