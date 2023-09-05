@@ -21,6 +21,10 @@ public class Slot {
     }
 
     public boolean changeOwner(Joueur newOwner) {
+        if(this.owner == null) {
+            this.owner = newOwner;
+            return true;
+        }
         if(!this.owner.equals(newOwner)) {
             this.exOwner = this.owner;
             this.owner = newOwner;

@@ -1,10 +1,7 @@
 package fr.ulille.moulinator;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Board implements Iterable<Slot> {
 
@@ -12,6 +9,7 @@ public class Board implements Iterable<Slot> {
     private List<List<Slot>> slots;
     private static final int DEFAULT_HEIGHT = 3;
     private static final int DEFAULT_WIDTH = 3;
+    public static final Map<Integer, List<Integer>> POSSIBILITY = loadPossibility();
 
     public Board(int height, int width) {
         this.height = height;
@@ -102,17 +100,77 @@ public class Board implements Iterable<Slot> {
         return board;
     }
 
-    public static void main(String[] args) {
-        Board b = new Board();
-        System.out.println(b);
-    }
-
     @Override
     public Iterator<Slot> iterator() {
+        return this.concat2DList().iterator();
+    }
+
+    private List<Slot> concat2DList() {
         List<Slot> slots = new ArrayList<>();
         for(List<Slot> row : this.slots) {
             slots.addAll(row);
         }
-        return slots.iterator();
+        return slots;
+    }
+
+    public List<List<Slot>> getSlots() {
+        return slots;
+    }
+
+    public List<Integer> allPositionPlayer(Joueur j) {
+        List<Integer> positions = new ArrayList<>();
+        int x = 0;
+        for(Slot s : this.concat2DList()) {
+            if(s.getOwner() != null && s.getOwner().equals(j)) { positions.add(x); }
+            x++;
+        }
+        return positions;
+    }
+
+    public List<Integer> allFreePosition() {
+        List<Integer> positions = new ArrayList<>();
+        int x = 0;
+        for(Slot s : this.concat2DList()) {
+            if(s.getOwner() == null) { positions.add(x); }
+            x++;
+        }
+        return positions;
+    }
+
+    public List<Integer> allFreePosition(int slotPos) {
+        List<Integer> positions = new ArrayList<>();
+        for(int i : POSSIBILITY.get(slotPos)) {
+            if(this.concat2DList().get(i).getOwner() == null) { positions.add(i); }
+        }
+        return positions;
+    }
+
+    public static Map<Integer, List<Integer>> loadPossibility() {
+        Map<Integer, List<Integer>> t = new HashMap<>();
+        try(Scanner sc = new Scanner(new File("resources/possibility.csv"))) {
+            while(sc.hasNextLine()) {
+                String[] line = sc.nextLine().split(",");
+                List<Integer> temp = new ArrayList<>();
+                for(String s : line[1].split("\\.")) {
+                    temp.add(Integer.parseInt(s));
+                }
+                t.put(Integer.parseInt(line[0]), temp);
+            }
+        } catch(Exception ignored) {}
+        return t;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Hello world!");
+    }
+
+    public void moveSlot(int first, int to) {
+        Slot s1 = this.concat2DList().get(first);
+        Slot s2 = this.concat2DList().get(to);
+        s1.moveSlot(s2);
+    }
+
+    public void setJoueurOnSlot(int slot, Joueur j) {
+        this.concat2DList().get(slot).changeOwner(j);
     }
 }
