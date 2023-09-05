@@ -7,6 +7,10 @@ import java.io.Serializable;
  * <p>La classe qui initialise des joueur</p>
  * @author HOCINE CHEBOUT
  * @author VALENTIN THUILLER
+ * @author LEIBOVICI EZECHIEL
+ * @author BARBEAU SIMON
+ * @author TOUMJI ABDALLAH
+ * @author BERRAKANE ADHAM
  */
     
 public sealed class Joueur implements Serializable permits Bot {
