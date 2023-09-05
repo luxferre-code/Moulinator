@@ -1,8 +1,9 @@
 package fr.ulille.moulinator;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Slot {
+public class Slot implements Serializable {
 
     private Joueur owner, exOwner;
 

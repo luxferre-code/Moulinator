@@ -1,9 +1,10 @@
 package fr.ulille.moulinator;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.*;
 
-public class Board implements Iterable<Slot> {
+public class Board implements Iterable<Slot>, Serializable {
 
     public int height, width;
     private List<List<Slot>> slots;
@@ -92,9 +93,10 @@ public class Board implements Iterable<Slot> {
             e.printStackTrace();
         }
         // Remplacement des slots par les joueurs
-        int x = 1;
+        int x = 0;
         for(Slot s : this) {
-            board = board.replaceFirst(x + "", s.toString());
+            if((char) ('A' + x) == 'X') { x++; }
+            board = board.replaceFirst((char) ('A' + x) + "", s.toString());
             x++;
         }
         return board;
@@ -173,4 +175,5 @@ public class Board implements Iterable<Slot> {
     public void setJoueurOnSlot(int slot, Joueur j) {
         this.concat2DList().get(slot).changeOwner(j);
     }
+
 }
