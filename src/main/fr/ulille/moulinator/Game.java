@@ -15,8 +15,7 @@ public final class Game implements Serializable {
     private Board Board_save;
     private boolean isPlayer1Turn_save;
     private static final long serialVersionUID = 1L;
-    public static final InputStream INPUT_STREAM = System.in;
-
+    public static final Scanner SCANNER = new Scanner(System.in);
     public static void logger(String s) {
         System.out.println(Color.ANSI_RED + s + Color.ANSI_RESET);
     }
@@ -53,6 +52,10 @@ public final class Game implements Serializable {
             return g;
         } catch(IOException | ClassNotFoundException ignored) { }
         return null;
+    }
+
+    public static void startGame() {
+        //TODO
     }
 
     @Override

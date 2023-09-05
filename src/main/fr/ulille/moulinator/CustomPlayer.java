@@ -1,4 +1,5 @@
 package fr.ulille.moulinator;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -7,7 +8,7 @@ public class CustomPlayer {
 
     public static Joueur makePlayer() {
         Joueur j;
-        Scanner sc = new Scanner(Game.INPUT_STREAM);
+        Scanner sc = Game.SCANNER;
         System.out.println("Quel est le nom du joueur ? ");
         String nom = sc.next();
         String color = "";

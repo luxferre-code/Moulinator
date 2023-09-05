@@ -9,7 +9,7 @@ public class Starting {
 
 
     public static void main(String[] args) throws InterruptedException, IOException {
-        String fichier = "Logo.txt"; 
+        String fichier = "resources/Logo.txt";
         
         try (BufferedReader br = new BufferedReader(new FileReader(fichier))) {
             String ligne;
@@ -37,9 +37,7 @@ public class Starting {
 
             }
         } catch (IOException ignored) {}
-
-        Menu m = new Menu();
-        m.choose();
+        Menu.execute();
     }
 
 
