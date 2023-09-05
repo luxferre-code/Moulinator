@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CustomPlayer{
-    public static void execute(){
+    public static void JvJ(){
         Joueur p1,p2;
         Scanner sc=new Scanner(System.in);
         System.out.println("Quel est le nom du premier joueur?");
@@ -46,7 +46,8 @@ public class CustomPlayer{
         p2=new Joueur(nom,colors.get(Integer.parseInt(color)-1));
         System.out.println(p1.toString() + p2.toString());
     }
+    
     public static void main(String[] args){
-        execute();
+        JvJ();
     }
 }
