@@ -3,25 +3,27 @@
 ## Démo + Planification du sprint suivant
 
 ### Ce que nous avons fait durant ce sprint
-Donnez ici la liste des histoires utilisateurs que vous avez livrées durant ce sprint.
-Vous pouvez utiliser cette liste pour préparer votre démo.
+Nous avons fait:
+- US-011A : J1 vs J2
+- US-027 : Systeme delete de piece
+- US-019A : Choix case
+- EPIC-019 : Mecanisme de deplacement
 
 ### Ce que nous allons faire durant le prochain sprint
-Donnez ici la liste des histoires utilisateurs que vous vous engagez à terminer durant le prochain sprint.
+- US-011B : J1 vs Bot
+- US-011C : Bot vs Bot
+- US-014 : Programme principal
 
 ## Rétrospective
 
 ### Sur quoi avons nous butté ?
-Lister ici tout ce qui était un peut moins bien que parfait.
-* Avez-vous terminé tout ce que vous vous étiez engagé à faire ?
-* Étiez -vous prêts au moment de la démo ?
-* ...
+Certains programmes sont devenus obsolète suite à des changement de methode ce qui nous a forcés a revenir modifier ces programmes 
 
 ### PDCA
-* De tous ces éléments quel est celui que vous voulez améliorer ?
-* Comment pouvez-vous mesurer qu'il s'améliore ?
-* Quelles sont toutes les options possible pour l'améliorer ?
-* Qu'allez-vous tester pour l'améliorer ?
+* Nous voulons baisser la necessiter de modifier de l'ancien code
+* En regardant si la nécessité de modifier de l'ancien code a baissé
+* Mieux prévoir la façon de coder certaines parties.
+
 
 # Mémo
 N’oubliez pas d’ajouter une photo du radiateur d’information au moment de la rétrospective.

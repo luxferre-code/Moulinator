@@ -14,8 +14,6 @@ Nous avons fait :
 
 ### Ce que nous allons faire durant le prochain sprint
 - US-011A : J1 vs J2
-- US-011B : J1 vs Bot
-- US-011C : Bot vs Bot
 - US-009A : Choix case
 
 ## Rétrospective
