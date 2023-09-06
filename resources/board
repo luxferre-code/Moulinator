@@ -10,14 +10,14 @@
       |      |               |               |      |                                             
       |      |               |               |      |               a-----------b-----------c                                
       |      |               |               |      |               |           |           |                  
-      |      |       G-------H-------I       |      |               |   d-------e-------f   |                              aide :
+      |      |       G-------H-------I       |      |               |   d-------e-------f   |                            help :
       |      |       |               |       |      |               |   |       |       |   |                   
-      |      |       |               |       |      |               |   |   g---h---i   |   |               - if you wish to undo your piece move,               
+      |      |       |               |       |      |               |   |   g---h---i   |   |             - if you wish to undo your piece move,               
       |      |       |               |       |      |               |   |   |       |   |   |                 please press the "z" key.
       J------K-------L               M-------N------O               j---k---l       m---n---o              
-      |      |       |               |       |      |               |   |   |       |   |   |               - to save this part, please write "save"
+      |      |       |               |       |      |               |   |   |       |   |   |             - to save this part, please write "save"
       |      |       |               |       |      |               |   |   p---q---r   |   |              
-      |      |       |               |       |      |               |   |       |       |   |               - to exit the game, please write "quit"
+      |      |       |               |       |      |               |   |       |       |   |             - to exit the game, please write "quit"
       |      |       P-------Q-------R       |      |               |   s-------t-------u   |
       |      |               |               |      |               |           |           |
       |      |               |               |      |               v-----------w-----------x
