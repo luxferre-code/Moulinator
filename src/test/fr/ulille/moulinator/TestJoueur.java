@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import fr.ulille.moulinator.Board;
+import fr.ulille.moulinator.Color;
 import fr.ulille.moulinator.Joueur;
 
 public class TestJoueur {
@@ -18,9 +19,27 @@ public class TestJoueur {
 
     @BeforeEach
     public void createJoueur() {
-        h = new Joueur("Hocine");
-        v = new Joueur("Valentin");
+        h = new Joueur("Hocine",Color.ANSI_BLACK);
+        v = new Joueur("Valentin",Color.ANSI_YELLOW);
         a = new Joueur("Adham");
+    }
+
+    @BeforeEach
+    public void placeSlot(){
+        Board b = new Board();
+        b.setJoueurOnSlot(0, h);
+        b.setJoueurOnSlot(1, h);
+        b.setJoueurOnSlot(2, h);
+        b.setJoueurOnSlot(3, h);
+        b.setJoueurOnSlot(4, h);
+        b.setJoueurOnSlot(5, h);
+        b.setJoueurOnSlot(6, v);
+        b.setJoueurOnSlot(7, v);
+        b.setJoueurOnSlot(8, v);
+        b.setJoueurOnSlot(9, v);
+        b.setJoueurOnSlot(10, v);
+        b.setJoueurOnSlot(11, v);
+
     }
 
     @Test
@@ -59,48 +78,10 @@ public class TestJoueur {
         assertTrue(a.chooseIsValid('x'));
         assertFalse(h.chooseIsValid('y'));
         assertFalse(v.chooseIsValid('z'));
-
-
         assertTrue(v.chooseIsValid('A'));
         assertTrue(a.chooseIsValid('B'));
         assertTrue(a.chooseIsValid('E'));
         assertFalse(v.chooseIsValid('Z'));
-
     }
-
-    @Test
-    public void testChooseSlotOwned() throws Exception{
-        Board b = new Board();
-        b.setJoueurOnSlot(0, h);
-        b.setJoueurOnSlot(1, h);
-        b.setJoueurOnSlot(2, h);
-        b.setJoueurOnSlot(3, h);
-        b.setJoueurOnSlot(4, h);
-        b.setJoueurOnSlot(5, h);
-        b.setJoueurOnSlot(6, v);
-        b.setJoueurOnSlot(7, v);
-        b.setJoueurOnSlot(8, v);
-        b.setJoueurOnSlot(9, v);
-        b.setJoueurOnSlot(10, v);
-        b.setJoueurOnSlot(11, v);
-
-    }
-    public void testChooseSlotToMove() throws Exception{
-        Board b = new Board();
-        b.setJoueurOnSlot(0, h);
-        b.setJoueurOnSlot(1, h);
-        b.setJoueurOnSlot(2, h);
-        b.setJoueurOnSlot(3, h);
-        b.setJoueurOnSlot(4, h);
-        b.setJoueurOnSlot(5, h);
-        b.setJoueurOnSlot(6, v);
-        b.setJoueurOnSlot(7, v);
-        b.setJoueurOnSlot(8, v);
-        b.setJoueurOnSlot(9, v);
-        b.setJoueurOnSlot(10, v);
-        b.setJoueurOnSlot(11, v);
-    }
-
-
     
 }
