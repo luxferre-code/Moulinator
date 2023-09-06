@@ -243,6 +243,9 @@ public class Board implements Iterable<Slot>, Serializable {
         }
         }
             return false;
-        }        
+        }
 
+    public Joueur getJoueurOnSlot(int i) {
+        return this.concat2DList().get(i).getOwner();
+    }
 }

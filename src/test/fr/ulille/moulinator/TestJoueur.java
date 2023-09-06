@@ -1,6 +1,5 @@
-package test.fr.ulille.moulinator;
-import fr.ulille.moulinator.Board;
-import fr.ulille.moulinator.Joueur;
+package fr.ulille.moulinator;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
@@ -54,8 +53,6 @@ public class TestJoueur {
         b.setJoueurOnSlot(9, v);
         b.setJoueurOnSlot(10, v);
         b.setJoueurOnSlot(11, v);
-        assertEquals(0,h.chooseSlotOwned('a'));
-        assertEquals(6,v.chooseSlotOwned('g'));
 
     }
     public void testChooseSlotToMove() throws Exception{
@@ -72,8 +69,6 @@ public class TestJoueur {
         b.setJoueurOnSlot(9, v);
         b.setJoueurOnSlot(10, v);
         b.setJoueurOnSlot(11, v);
-        assertEquals(0,h.chooseSlotToMove('a'));
-        assertEquals(6,v.chooseSlotToMove('g'));
     }
 
 

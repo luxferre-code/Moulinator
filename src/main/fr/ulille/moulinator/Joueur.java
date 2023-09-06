@@ -2,6 +2,9 @@ package fr.ulille.moulinator;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 /**
  * <p>La classe qui initialise des joueur</p>
@@ -17,15 +20,14 @@ public sealed class Joueur implements Serializable permits Bot {
     public final String NAME;
     private Color color;
     private static final Color BASE_COLOR = Color.ANSI_RED;
-    public  int onBoard;
+    public int onBoard;
     public boolean allPlaced;
+    protected int nbPiecePlaced = 0;
+    public static final int NB_MAX_PIECE = 6;
 
     public Joueur(String name, Color color, int onBoard, boolean allPlaced){
         this.NAME = name;
         this.onBoard = onBoard;
-        if(onBoard == 6){
-            this.allPlaced = true;
-        }
         this.allPlaced = allPlaced;
         this.color = color;
     }
@@ -48,50 +50,98 @@ public sealed class Joueur implements Serializable permits Bot {
         return this.NAME;
     }
 
-    public boolean chooseIsYours(Color myColor){
-        if(this.color.equals(myColor)){
+    public boolean choose() {
+        if(this.allPlaced) {
+            try {
+                int from = chooseSlotOwned();
+                int to = chooseSlotToMove(from);
+                if(to == -1) {
+                    return choose();
+                }
+                Game.Board.moveSlot(from, to);
+                System.out.println(this.NAME + " move " + from + " to " + to);
+                return true;
+            } catch(NoHavingSlotException e) {
+                Game.logger("No slot owned !");
+            } catch(SlotHavingOwnerException e) {
+                Game.logger("No free slot !");
+                return choose();
+            }
+        } else {
+            int slot = chooseFreeSlot();
+            Game.Board.setJoueurOnSlot(slot, this);
+            System.out.println(this.NAME + " place on " + slot);
+            this.addPiecePlaced();
             return true;
         }
         return false;
     }
 
-    public boolean choose(){
-        if(chooseIsYours(this.color)){
-            return true;
+    private char removeMaj(char c){
+        if(c >= 'A' && c <= 'Z') {
+            return (char) (c - 'A' + 'a');
         }
-        return false;
+        return c;
     }
 
     public boolean chooseIsValid(char c){
-        String tmp = c+"";
-        char newC = tmp.toLowerCase().charAt(0);
-        if(newC>='a' && newC<='x'){
-            return true;
-        }
-        return false;
-        }
-
-    public int chooseSlotOwned(char c) throws NoHavingSlotException {
-        if(this.allPlaced && chooseIsYours(this.color) && chooseIsValid(c)){
-            int numberCase = (int) c-'a';
-            return numberCase;
-        }
-        throw new NoHavingSlotException("No slot owned");
+        return c >= 'a' && c <= 'x';
     }
 
-    public int chooseSlotToMove(char c) throws SlotHavingOwnerException {
-        if(this.allPlaced && chooseIsYours(this.color) && chooseIsValid(c) ){
-            int numberCase = (int) c-'a';
-            return numberCase;
-        }
-        throw new SlotHavingOwnerException("No free slot");
-
+    public int chooseSlotOwned() throws NoHavingSlotException {
+        System.out.print("Choose a slot to move: ");
+        char c;
+        do {
+            c = Game.SCANNER.next().charAt(0);
+            c = removeMaj(c);
+            if(!chooseIsValid(c)) {
+                Game.logger("Invalid slot !");
+            }
+        } while(!chooseIsValid(c));
+        return c - 'a';
     }
 
-    public void move(char c, char d) throws NoHavingSlotException, SlotHavingOwnerException{
-        int first = chooseSlotOwned(c);
-        int to = chooseSlotToMove(d);
-        Game.Board.moveSlot(first, to);
+    public int chooseSlotToMove(int slot) throws SlotHavingOwnerException {
+        List<Character> possibility = new ArrayList<>();
+        for(Integer i : Game.Board.allFreePosition(slot)) {
+            possibility.add((char) (i + 'a'));
+        }
+        System.out.print("Choose a slot to move " + possibility.toString().replace("[", "(").replace("]", ")") + ": ");
+        char c;
+        do {
+            c = Game.SCANNER.next().charAt(0);
+            c = removeMaj(c);
+            if(c == 'z') {
+                return -1;
+            }
+            if(!chooseIsValid(c)) {
+                Game.logger("Invalid slot !");
+            }
+            else if(!possibility.contains(c)) {
+                Game.logger("Slot not free !");
+            }
+        } while(!chooseIsValid(c) && !possibility.contains(c));
+        return c - 'a';
+    }
+
+    public int chooseFreeSlot() {
+        List<Character> possibility = new ArrayList<>();
+        for(Integer i : Game.Board.allFreePosition()) {
+            possibility.add((char) (i + 'a'));
+        }
+        System.out.print("Choose a slot to place " + possibility.toString().replace("[", "(").replace("]", ")") + ": ");
+        char c;
+        do {
+            c = Game.SCANNER.next().charAt(0);
+            c = removeMaj(c);
+            if(!chooseIsValid(c)) {
+                Game.logger("Invalid slot !");
+            }
+            else if(!possibility.contains(c)) {
+                Game.logger("Slot not free !");
+            }
+        } while(!chooseIsValid(c) && !possibility.contains(c));
+        return c - 'a';
     }
     
 
@@ -99,17 +149,21 @@ public sealed class Joueur implements Serializable permits Bot {
         return  this.color + "X" + Color.ANSI_RESET;
     }
 
+    protected void addPiecePlaced(){
+        if(!this.allPlaced) this.nbPiecePlaced++;
+        if(this.nbPiecePlaced == NB_MAX_PIECE) this.allPlaced = true;
+    }
+
+    public int getNbPiecePlaced() {
+        return nbPiecePlaced;
+    }
+
     public static void main(String[] args) {
-        Joueur j = new Joueur("Hocine");
-        System.out.println(j.getName());
-        System.out.println();
-        System.out.println(j.toString());
-        System.out.println(j.color.getColor());
-        System.out.println(j.chooseIsYours(BASE_COLOR));
-        System.out.println(j.chooseIsValid('z'));
-        System.out.println("-----------");
-        System.out.println(j.chooseIsValid('A'));
-        System.out.println('e');
+        Joueur j = CustomPlayer.makePlayer();
+        System.out.println(j);
+        System.out.println(Game.Board);
+        j.choose();
+        System.out.println(Game.Board);
     }
 
 }

@@ -43,6 +43,7 @@ public final class Bot extends Joueur {
             int first = temps.get(0);
             Game.Board.setJoueurOnSlot(first, this);
             System.out.println("Bot place on " + first);
+            this.addPiecePlaced();
         }
         return true;
     }
