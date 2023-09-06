@@ -11,7 +11,6 @@ import java.io.Serializable;
  * @author TOUMJI ABDALLAH
  * @author BERRAKANE ADHAM
  */
-
 public enum Color implements Serializable {
     /**
      * La couleur qui sera considérer comme par defaut

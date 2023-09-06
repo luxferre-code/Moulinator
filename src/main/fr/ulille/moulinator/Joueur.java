@@ -22,7 +22,7 @@ public sealed class Joueur implements Serializable permits Bot {
     public int onBoard;
     public boolean allPlaced;
     protected int nbPiecePlaced = 0;
-    public static final int NB_MAX_PIECE = 6;
+    public static final int NB_MAX_PIECE = 8;
 
     /**
      * Constructeur de la classe Joueur completement défini
@@ -111,6 +111,11 @@ public sealed class Joueur implements Serializable permits Bot {
         return false;
     }
 
+    /**
+     * Methode qui verifie si le caractère est en majuscule et le met en minuscule
+     * @param c : le caractère donner par l'utilisateur
+     * @return char : le caractère en minuscule
+     */
     private char removeMaj(char c){
         if(c >= 'A' && c <= 'Z') {
             return (char) (c - 'A' + 'a');
@@ -118,10 +123,19 @@ public sealed class Joueur implements Serializable permits Bot {
         return c;
     }
 
+    /**
+     * @param c : le caractère donner par l'utilisateur
+     * @return boolean : si le caractère est valide
+     */
     public boolean chooseIsValid(char c){
         return c >= 'a' && c <= 'x';
     }
 
+    /**
+     * Methode qui permet au joueur de choisir un slot qui lui appartient
+     * @return int : la position du slot choisi par le joueur
+     * @throws NoHavingSlotException : Le slot choisie n'est pas possédé par le joueur
+     */
     public int chooseSlotOwned() throws NoHavingSlotException {
         System.out.print("Choose a slot to move: ");
         char c;
@@ -135,6 +149,11 @@ public sealed class Joueur implements Serializable permits Bot {
         return c - 'a';
     }
 
+    /**
+     * @param slot
+     * @return int : la position du slot sur le plateau où le joueur veux déplacer son pion
+     * @throws SlotHavingOwnerException : Le slot choisie est déjà possédé par un joueur ou est déjà occupé
+     */
     public int chooseSlotToMove(int slot) throws SlotHavingOwnerException {
         List<Character> possibility = new ArrayList<>();
         for(Integer i : Game.Board.allFreePosition(slot)) {
@@ -158,6 +177,9 @@ public sealed class Joueur implements Serializable permits Bot {
         return c - 'a';
     }
 
+    /**
+     * @return int : la position du slot sur le plateau où le joueur peut placer son pion parmis les slots libres
+     */
     public int chooseFreeSlot() {
         List<Character> possibility = new ArrayList<>();
         for(Integer i : Game.Board.allFreePosition()) {
@@ -183,11 +205,17 @@ public sealed class Joueur implements Serializable permits Bot {
         return  this.color + "X" + Color.ANSI_RESET;
     }
 
+    /**
+     *  Methode qui permet de savoir si le joueur a placé tous ses pions, si ils ne sont pas tous placé, on incrémente le nombre de pions placé
+     */
     protected void addPiecePlaced(){
         if(!this.allPlaced) this.nbPiecePlaced++;
         if(this.nbPiecePlaced == NB_MAX_PIECE) this.allPlaced = true;
     }
 
+    /**
+     * @return int : le nombre de pions placé
+     */
     public int getNbPiecePlaced() {
         return nbPiecePlaced;
     }
