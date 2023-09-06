@@ -51,6 +51,7 @@ public sealed class Joueur implements Serializable permits Bot {
     }
 
     public boolean choose() {
+        int slotPlace = -1;
         if(this.allPlaced) {
             try {
                 int from = chooseSlotOwned();
@@ -60,7 +61,7 @@ public sealed class Joueur implements Serializable permits Bot {
                 }
                 Game.Board.moveSlot(from, to);
                 System.out.println(this.NAME + " move " + from + " to " + to);
-                return true;
+                slotPlace = to;
             } catch(NoHavingSlotException e) {
                 Game.logger("No slot owned !");
             } catch(SlotHavingOwnerException e) {
@@ -72,9 +73,26 @@ public sealed class Joueur implements Serializable permits Bot {
             Game.Board.setJoueurOnSlot(slot, this);
             System.out.println(this.NAME + " place on " + slot);
             this.addPiecePlaced();
-            return true;
+            this.onBoard++;
+            slotPlace = slot;
         }
-        return false;
+
+        try {
+            if(Game.Board.sontAligne(slotPlace)) {
+                int ennemiSlot = chooseEnnemiSlot();
+                Game.Board.setJoueurOnSlot(ennemiSlot, null);
+                System.out.println(this.NAME + " remove " + ennemiSlot);
+                if(Game.p1.equals(this)) {
+                    Game.p2.onBoard--;
+                } else {
+                    Game.p1.onBoard--;
+                }
+            }
+        } catch(NoHavingSlotException e) {
+            Game.logger("No ennemi slot !");
+        }
+
+        return slotPlace != -1;
     }
 
     private char removeMaj(char c){
@@ -86,6 +104,27 @@ public sealed class Joueur implements Serializable permits Bot {
 
     public boolean chooseIsValid(char c){
         return c >= 'a' && c <= 'x';
+    }
+
+    public int chooseEnnemiSlot() throws NoHavingSlotException {
+        List<Integer> ennemiSlot = Game.Board.allPositionPlayer(Game.isPlayer1Turn ? Game.p2 : Game.p1);
+        List<Character> possibility = new ArrayList<>();
+        for(Integer i : ennemiSlot) {
+            possibility.add((char) (i + 'a'));
+        }
+        System.out.print("Choose a ennemi to remove " + possibility.toString().replace("[", "(").replace("]", ")") + ": ");
+        char c;
+        do {
+            c = Game.SCANNER.next().charAt(0);
+            c = removeMaj(c);
+            if(!chooseIsValid(c)) {
+                Game.logger("Invalid slot !");
+            }
+            else if(!possibility.contains(c)) {
+                Game.logger("Slot not ennemi !");
+            }
+        } while(!chooseIsValid(c) && !possibility.contains(c));
+        return c - 'a';
     }
 
     public int chooseSlotOwned() throws NoHavingSlotException {
@@ -140,7 +179,7 @@ public sealed class Joueur implements Serializable permits Bot {
             else if(!possibility.contains(c)) {
                 Game.logger("Slot not free !");
             }
-        } while(!chooseIsValid(c) && !possibility.contains(c));
+        } while(!chooseIsValid(c) || !possibility.contains(c));
         return c - 'a';
     }
     
@@ -156,6 +195,10 @@ public sealed class Joueur implements Serializable permits Bot {
 
     public int getNbPiecePlaced() {
         return nbPiecePlaced;
+    }
+
+    public boolean isDead(){
+        return this.onBoard <= 2 && this.allPlaced;
     }
 
     public static void main(String[] args) {
