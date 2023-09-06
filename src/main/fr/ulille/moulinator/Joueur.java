@@ -158,6 +158,11 @@ public sealed class Joueur implements Serializable permits Bot {
      * @return boolean : si le caractère est valide
      */
     public boolean chooseIsValid(char c){
+        if(c>='A' && c<='Z'){
+            String newC = c+"";
+            newC = newC.toLowerCase();
+            c = newC.charAt(0);
+        }
         return c >= 'a' && c <= 'x';
     }
 

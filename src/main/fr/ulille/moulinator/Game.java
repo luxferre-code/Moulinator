@@ -8,9 +8,17 @@ import fr.ulille.moulinator.gamemode.OneVSOne;
 import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Map;
 import java.util.Scanner;
 
+/**
+ * <p>La classe qui initialise le jeu</p>
+ * @author HOCINE CHEBOUT
+ * @author VALENTIN THUILLER
+ * @author LEIBOVICI EZECHIEL
+ * @author BARBEAU SIMON
+ * @author TOUMJI ABDALLAH
+ * @author BERRAKANE ADHAM
+ */
 public final class Game implements Serializable {
     
     /**

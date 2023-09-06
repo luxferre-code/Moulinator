@@ -12,7 +12,7 @@ import fr.ulille.moulinator.Board;
 import fr.ulille.moulinator.Joueur;
 
 public class TestJoueur {
-    /*Joueur h;
+    Joueur h;
     Joueur v;
     Joueur a;
 
@@ -35,9 +35,36 @@ public class TestJoueur {
     public void testChooseIsValid(){
         assertTrue(h.chooseIsValid('a'));
         assertTrue(v.chooseIsValid('b'));
-        assertTrue(a.chooseIsValid('E'));
-        assertFalse(h.chooseIsValid('z'));
+        assertTrue(a.chooseIsValid('c'));
+        assertTrue(h.chooseIsValid('d'));
+        assertTrue(v.chooseIsValid('e'));
+        assertTrue(a.chooseIsValid('f'));
+        assertTrue(h.chooseIsValid('g'));
+        assertTrue(v.chooseIsValid('h'));
+        assertTrue(a.chooseIsValid('i'));
+        assertTrue(h.chooseIsValid('j'));
+        assertTrue(v.chooseIsValid('k'));
+        assertTrue(a.chooseIsValid('l'));
+        assertTrue(h.chooseIsValid('m'));
+        assertTrue(v.chooseIsValid('n'));
+        assertTrue(a.chooseIsValid('o'));
+        assertTrue(h.chooseIsValid('p'));
+        assertTrue(v.chooseIsValid('q'));
+        assertTrue(a.chooseIsValid('r'));
+        assertTrue(h.chooseIsValid('s'));
+        assertTrue(v.chooseIsValid('t'));
+        assertTrue(a.chooseIsValid('u'));
+        assertTrue(h.chooseIsValid('v'));
+        assertTrue(v.chooseIsValid('w'));
+        assertTrue(a.chooseIsValid('x'));
+        assertFalse(h.chooseIsValid('y'));
+        assertFalse(v.chooseIsValid('z'));
+
+
         assertTrue(v.chooseIsValid('A'));
+        assertTrue(a.chooseIsValid('B'));
+        assertTrue(a.chooseIsValid('E'));
+        assertFalse(v.chooseIsValid('Z'));
 
     }
 
@@ -72,7 +99,7 @@ public class TestJoueur {
         b.setJoueurOnSlot(9, v);
         b.setJoueurOnSlot(10, v);
         b.setJoueurOnSlot(11, v);
-    }*/
+    }
 
 
     
