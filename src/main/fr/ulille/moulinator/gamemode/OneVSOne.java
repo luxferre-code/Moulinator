@@ -2,11 +2,18 @@ package fr.ulille.moulinator.gamemode;
 
 import java.util.Scanner;
 
-import fr.ulille.moulinator.Color;
 import fr.ulille.moulinator.CustomPlayer;
 import fr.ulille.moulinator.Game;
 import fr.ulille.moulinator.Joueur;
-
+/**
+ * <p>La classe qui initialise le mode de jeu J1 VS J2</p>
+ * @author HOCINE CHEBOUT
+ * @author VALENTIN THUILLER
+ * @author LEIBOVICI EZECHIEL
+ * @author BARBEAU SIMON
+ * @author TOUMJI ABDALLAH
+ * @author BERRAKANE ADHAM
+ */
 public class OneVSOne implements GameMode{
 
     @Override
