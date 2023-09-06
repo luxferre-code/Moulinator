@@ -4,7 +4,6 @@ package fr.ulille.moulinator;
 import fr.ulille.moulinator.enums.Color;
 import fr.ulille.moulinator.exceptions.NoHavingSlotException;
 import fr.ulille.moulinator.exceptions.SlotHavingOwnerException;
-import fr.ulille.moulinator.panels.CustomPlayer;
 import fr.ulille.moulinator.panels.Menu;
 
 import java.io.Serializable;

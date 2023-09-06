@@ -132,7 +132,9 @@ public final class Game implements Serializable {
 
     public static void clearScreen() {
         try {
-            Process process = new ProcessBuilder("clear").inheritIO().start();
+            Process process;
+            if(!System.getProperty("os.name").equals("Windows")) process = new ProcessBuilder("clear").inheritIO().start();
+            else process = new ProcessBuilder("cmd", "/c", "cls").inheritIO().start();
             process.waitFor();
         } catch (IOException | InterruptedException ignored) {}
     }
