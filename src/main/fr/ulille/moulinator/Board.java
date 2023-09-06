@@ -60,11 +60,6 @@ public class Board implements Iterable<Slot>, Serializable {
         return this.getSlot(width / 2 + x, height / 2);
     }
 
-    private Slot getSlotMiddleColumn(int y, boolean isTop) {
-        if(isTop) { return this.getSlot(width / 2, y); }
-        return this.getSlot(width / 2, height / 2 + y);
-    }
-
     public List<Slot> getColumn(int x) {
         List<Slot> column = new ArrayList<>();
         for(int i = 0; i < this.height; i++) {
@@ -161,13 +156,6 @@ public class Board implements Iterable<Slot>, Serializable {
             }
         } catch(Exception ignored) {}
         return t;
-    }
-
-    public static void main(String[] args) {
-        System.out.println("Hello world!");
-        Board b = new Board();
-        b.initBoard();
-        System.out.println(b);
     }
 
     public void moveSlot(int first, int to) {

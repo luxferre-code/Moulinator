@@ -23,6 +23,12 @@ public final class Game implements Serializable {
     private boolean isPlayer1Turn_save;
     private static final long serialVersionUID = 1L;
     public static final Scanner SCANNER = new Scanner(System.in);
+    public static int maxBilles = 9;
+    public static int minBilles = 2;
+    public static boolean debugMod = false;
+    private boolean debugMod_save;
+    private int maxBilles_save, minBilles_save;
+
     public static void logger(String s) {
         System.out.println(Color.ANSI_RED + s + Color.ANSI_RESET);
     }
@@ -40,6 +46,9 @@ public final class Game implements Serializable {
             this.Board_save = Board;
             this.isPlayer1Turn_save = isPlayer1Turn;
             this.gameType_save = gameType;
+            this.maxBilles_save = maxBilles;
+            this.minBilles_save = minBilles;
+            this.debugMod_save = debugMod;
             out.writeObject(this);
             out.close();
             fileOut.close();
@@ -60,6 +69,9 @@ public final class Game implements Serializable {
             Game.Board = g.Board_save;
             Game.isPlayer1Turn = g.isPlayer1Turn_save;
             Game.gameType = g.gameType_save;
+            Game.maxBilles = g.maxBilles_save;
+            Game.minBilles = g.minBilles_save;
+            Game.debugMod = g.debugMod_save;
             in.close();
             fileIn.close();
             return g;

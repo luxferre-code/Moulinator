@@ -27,15 +27,16 @@ public class Menu {
             Game.logger("logo not found !");
         }
 
-        System.out.println("~ Bienvenue dans le jeu du moulin ~" +
-                           "\n1. Jouer avec un joueur" +
-                           "\n2. Jouer contre un bot" +
-                           "\n3. Bot vs Bot" +
-                           "\n4. Règles du jeu" +
-                           "\n5. Charger une partie" +
-                           "\n6. Quitter");
+        System.out.println("~ Welcome to the mill game ~" +
+                           "\n1. Player VS Player" +
+                           "\n2. Player VS Bot" +
+                           "\n3. Bot VS Bot" +
+                           "\n4. Game rules" +
+                           "\n5. Load save" +
+                           "\n6. Settings" +
+                           "\n7. Quit");
 
-        int choice = choose(1, 5);
+        int choice = choose(1, 7);
         switch(choice) {
             case 1 -> {
                 Game.gameType = GameType.PLAYER_VS_PLAYER;
@@ -59,28 +60,36 @@ public class Menu {
                     Game.logger("regles.txt not found !");
                 }
                 Scanner sc = Game.SCANNER;
-                System.out.println("Appuyez sur entrée pour continuer");
+                System.out.println("Press enter to continue");
                 sc.nextLine();
                 execute();
             }
             case 5 -> {
-                Game.info("Chargement de la partie...");
+                Game.info("Load save, please wait...");
                 Game g = Game.loadGame();
                 System.out.println(g);
                 if(g == null) {
                     Game.logger("No save found !");
                     execute();
                 } else {
-                    Game.info("Partie chargée avec succès !");
+                    Game.info("Save loaded !");
                     Game.startGame();
                 }
             }
             case 6 -> {
-                System.out.println("Au revoir");
+                OptionsMenu.execute();
+                execute();
+            }
+            case 7 -> {
+                System.out.println("Bye bye !");
                 System.exit(0);
             }
             default -> throw new IllegalStateException("Unexpected value: " + choice);
         }
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        execute();
     }
 
 }

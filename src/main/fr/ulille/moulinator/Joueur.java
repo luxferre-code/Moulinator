@@ -22,7 +22,6 @@ public sealed class Joueur implements Serializable permits Bot {
     public int onBoard;
     public boolean allPlaced;
     protected int nbPiecePlaced = 0;
-    public static final int NB_MAX_PIECE = 6;
 
     public Joueur(String name, Color color, int onBoard, boolean allPlaced){
         this.NAME = name;
@@ -219,7 +218,7 @@ public sealed class Joueur implements Serializable permits Bot {
 
     protected void addPiecePlaced(){
         if(!this.allPlaced) this.nbPiecePlaced++;
-        if(this.nbPiecePlaced == NB_MAX_PIECE) this.allPlaced = true;
+        if(this.nbPiecePlaced == Game.maxBilles) this.allPlaced = true;
     }
 
     public int getNbPiecePlaced() {
@@ -227,7 +226,7 @@ public sealed class Joueur implements Serializable permits Bot {
     }
 
     public boolean isDead(){
-        return Game.Board.allPositionPlayer(this).size() <= 2 && this.allPlaced;
+        return Game.Board.allPositionPlayer(this).size() <= Game.minBilles && this.allPlaced;
     }
 
     public Color getColor() {
