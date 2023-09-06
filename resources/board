@@ -9,15 +9,15 @@
       |      D---------------E---------------F      |                                              
       |      |               |               |      |                                             
       |      |               |               |      |               a-----------b-----------c                     
-      |      |               |               |      |               |           |           |                  aide :
+      |      |               |               |      |               |           |           |                  
       |      |       G-------H-------I       |      |               |   d-------e-------f   |             
-      |      |       |               |       |      |               |   |       |       |   |     si vous souhaitez annuler votre choix
-      |      |       |               |       |      |               |   |   g---h---i   |   |     concernant le déplacement de votre pion, 
+      |      |       |               |       |      |               |   |       |       |   |                   aide :
+      |      |       |               |       |      |               |   |   g---h---i   |   |      
+      |      |       |               |       |      |               |   |   |       |   |   |     si vous souhaitez annuler votre choix   
+      J------K-------L               M-------N------O               j---k---l       m---n---o     concernant le déplacement de votre pion,
       |      |       |               |       |      |               |   |   |       |   |   |     veuillez appuyer sur la touche "z".
-      J------K-------L               M-------N------O               j---k---l       m---n---o
-      |      |       |               |       |      |               |   |   |       |   |   |
-      |      |       |               |       |      |               |   |   p---q---r   |   |
-      |      |       |               |       |      |               |   |       |       |   |
+      |      |       |               |       |      |               |   |   p---q---r   |   |     
+      |      |       |               |       |      |               |   |       |       |   |     
       |      |       P-------Q-------R       |      |               |   s-------t-------u   |
       |      |               |               |      |               |           |           |
       |      |               |               |      |               v-----------w-----------x
