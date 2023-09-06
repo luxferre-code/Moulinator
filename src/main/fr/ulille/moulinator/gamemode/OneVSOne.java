@@ -13,7 +13,7 @@ public class OneVSOne implements GameMode{
         System.out.println("Joueur 2 :");
         Game.p2 = CustomPlayer.makePlayer();
         Game.clearScreen();
-        while(!Game.p1.isDead() && !Game.p2.isDead()) {
+        while(!Game.p1.isDead() || !Game.p2.isDead()) {
             Joueur p = Game.isPlayer1Turn ? Game.p1 : Game.p2;
             System.out.println(Game.Board);
             System.out.println("It's " + p + " turn !");

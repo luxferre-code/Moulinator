@@ -11,12 +11,12 @@
       |      |               |               |      |               a-----------b-----------c                     
       |      |               |               |      |               |           |           |                  
       |      |       G-------H-------I       |      |               |   d-------e-------f   |             
-      |      |       |               |       |      |               |   |       |       |   |                   aide :
-      |      |       |               |       |      |               |   |   g---h---i   |   |      
-      |      |       |               |       |      |               |   |   |       |   |   |     si vous souhaitez annuler votre choix   
-      J------K-------L               M-------N------O               j---k---l       m---n---o     concernant le déplacement de votre pion,
-      |      |       |               |       |      |               |   |   |       |   |   |     veuillez appuyer sur la touche "z".
-      |      |       |               |       |      |               |   |   p---q---r   |   |     
+      |      |       |               |       |      |               |   |       |       |   |                   
+      |      |       |               |       |      |               |   |   g---h---i   |   |                   aide :
+      |      |       |               |       |      |               |   |   |       |   |   |        
+      J------K-------L               M-------N------O               j---k---l       m---n---o     si vous souhaitez annuler votre choix
+      |      |       |               |       |      |               |   |   |       |   |   |     concernant le déplacement de votre pion,
+      |      |       |               |       |      |               |   |   p---q---r   |   |     veuillez appuyer sur la touche "z".
       |      |       |               |       |      |               |   |       |       |   |     
       |      |       P-------Q-------R       |      |               |   s-------t-------u   |
       |      |               |               |      |               |           |           |
