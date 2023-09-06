@@ -14,7 +14,7 @@ public class BotVSBot implements GameMode {
         while(!Game.p1.isDead() && !Game.p2.isDead()) {
             Game.clearScreen();
             System.out.println(Game.Board);
-            System.out.println("It's " + (Game.isPlayer1Turn ? Game.p1 : Game.p2) + " turn !");
+            System.out.println("It's " + (Game.isPlayer1Turn ? Game.p1 : Game.p2).toStringName() + " turn !");
             if((Game.isPlayer1Turn ? Game.p1 : Game.p2).choose()) {
                 if(Game.debugMod) System.out.println("Bot 1 => nbPiecePlaced: " + Game.Board.allPositionPlayer((Game.isPlayer1Turn ? Game.p1 : Game.p2)).size() + " allPlaced: " + (Game.isPlayer1Turn ? Game.p1 : Game.p2).allPlaced);
                 Game.isPlayer1Turn = !Game.isPlayer1Turn;

@@ -14,27 +14,11 @@ public class OneVSBot implements GameMode {
             Game.p1 = CustomPlayer.makePlayer();
             Game.p2 = new Bot();
         }
-        Scanner sc = Game.SCANNER;
-        boolean valide = false;
-        while (!valide){
-            System.out.println("Have you created your desired player yes/no : "  + Game.p1.toStringName());
-            String choix = sc.next();
-            if (choix.toLowerCase().contains("no")){
-                Game.p1.getColor().setUsed(false);
-                Game.p2.getColor().setUsed(false);
-                run();
-            } else if (choix.toLowerCase().contains("yes")){
-                valide = true;
-            } else {
-                System.out.println("Invalid choice");
-            }
-
-        }
         Game.clearScreen();
         while(!Game.p1.isDead() && !Game.p2.isDead()) {
             Game.clearScreen();
             System.out.println(Game.Board);
-            System.out.println("It's " + (Game.isPlayer1Turn ? Game.p1 : Game.p2) + " turn !");
+            System.out.println("It's " + (Game.isPlayer1Turn ? Game.p1 : Game.p2).toStringName() + " turn !");
             if((Game.isPlayer1Turn ? Game.p1 : Game.p2).choose()) {
                 Game.isPlayer1Turn = !Game.isPlayer1Turn;
             } else {

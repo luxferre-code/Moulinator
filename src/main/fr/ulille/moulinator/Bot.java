@@ -4,17 +4,21 @@ import fr.ulille.moulinator.enums.Color;
 import fr.ulille.moulinator.exceptions.NoHavingSlotException;
 import fr.ulille.moulinator.exceptions.SlotHavingOwnerException;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.*;
 
 public final class Bot extends Joueur {
 
     /**
      * Constructeur de la classe Bot avec le nom "Bot" par défaut et la couleur par defaut
      */
+
+    private static final Set<String> NAMES = Bot.loadNames();
+    private static final Random RDM = new Random();
+
     public Bot(){
-        super("Bot");
+        super(rdmName());
         List<Color> colors = new ArrayList<>();
         for(Color c : Color.values()) {
             if(c != Color.ANSI_RESET && !c.isUsed()) {
@@ -24,6 +28,25 @@ public final class Bot extends Joueur {
         Collections.shuffle(colors);
         this.color = colors.get(0);
         this.color.setUsed(true);
+    }
+
+    private static Set<String> loadNames() {
+        Set<String> temp = new HashSet<>();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("resources/names.txt"));
+            String line;
+            while((line = br.readLine()) != null) {
+                temp.add(line);
+            }
+            br.close();
+        } catch(Exception e) {
+            if(Game.debugMod) e.printStackTrace();
+        }
+        return temp;
+    }
+
+    private static String rdmName() {
+        return (String) NAMES.toArray()[RDM.nextInt(NAMES.size())];
     }
 
     /**
