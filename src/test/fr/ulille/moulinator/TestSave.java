@@ -1,7 +1,12 @@
-package fr.ulille.moulinator;
+package test.fr.ulille.moulinator;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
+import fr.ulille.moulinator.Bot;
+import fr.ulille.moulinator.Color;
+import fr.ulille.moulinator.Game;
+import fr.ulille.moulinator.Joueur;
 
 public class TestSave {
 

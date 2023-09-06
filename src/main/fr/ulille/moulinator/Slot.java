@@ -5,7 +5,14 @@ import java.util.Objects;
 
 public class Slot implements Serializable {
 
+    /**
+     * Joueur : le joueur 1 et 2
+     */
     private Joueur owner, exOwner;
+
+    /**
+     * int : coordonnées du slot
+     */
     private int coordx,coordy;
 
     public Slot() { }

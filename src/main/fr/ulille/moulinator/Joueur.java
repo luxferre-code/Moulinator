@@ -7,6 +7,10 @@ import java.io.Serializable;
  * <p>La classe qui initialise des joueur</p>
  * @author HOCINE CHEBOUT
  * @author VALENTIN THUILLER
+ * @author LEIBOVICI EZECHIEL
+ * @author BARBEAU SIMON
+ * @author TOUMJI ABDALLAH
+ * @author BERRAKANE ADHAM
  */
     
 public sealed class Joueur implements Serializable permits Bot {
@@ -60,9 +64,8 @@ public sealed class Joueur implements Serializable permits Bot {
 
     public boolean chooseIsValid(char c){
         String tmp = c+"";
-        tmp.toLowerCase();
-        char newC = tmp.charAt(0);
-        if(newC>='a' || newC<='x'){
+        char newC = tmp.toLowerCase().charAt(0);
+        if(newC>='a' && newC<='x'){
             return true;
         }
         return false;
@@ -77,7 +80,7 @@ public sealed class Joueur implements Serializable permits Bot {
     }
 
     public int chooseSlotToMove(char c) throws SlotHavingOwnerException {
-        if(this.allPlaced && chooseIsYours(this.color) && chooseIsValid(c)){
+        if(this.allPlaced && chooseIsYours(this.color) && chooseIsValid(c) ){
             int numberCase = (int) c-'a';
             return numberCase;
         }
@@ -99,9 +102,14 @@ public sealed class Joueur implements Serializable permits Bot {
     public static void main(String[] args) {
         Joueur j = new Joueur("Hocine");
         System.out.println(j.getName());
+        System.out.println();
         System.out.println(j.toString());
         System.out.println(j.color.getColor());
         System.out.println(j.chooseIsYours(BASE_COLOR));
+        System.out.println(j.chooseIsValid('z'));
+        System.out.println("-----------");
+        System.out.println(j.chooseIsValid('A'));
+        System.out.println('e');
     }
 
 }
