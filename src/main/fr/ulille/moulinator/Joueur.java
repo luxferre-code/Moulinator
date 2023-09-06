@@ -65,10 +65,10 @@ public sealed class Joueur implements Serializable permits Bot {
             }
             case "menu" -> {
                 try {
-                    Menu.execute();
                     Game.p1 = null;
                     Game.p2 = null;
                     Game.Board = new Board();
+                    Menu.execute();
                 } catch(Exception ignored) { }
                 System.exit(0);
             }
