@@ -22,7 +22,7 @@ public sealed class Joueur implements Serializable permits Bot {
     public int onBoard;
     public boolean allPlaced;
     protected int nbPiecePlaced = 0;
-    public static final int NB_MAX_PIECE = 8;
+    public static final int NB_MAX_PIECE = 9;
 
     /**
      * Constructeur de la classe Joueur completement défini
