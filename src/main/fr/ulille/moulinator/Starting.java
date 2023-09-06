@@ -1,5 +1,7 @@
 package fr.ulille.moulinator;
 
+import fr.ulille.moulinator.gamemode.Demo;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,6 +26,11 @@ public class Starting {
      * @throws IOException : si il y a une erreur d'entrée/sortie
      */
     public static void main(String[] args) throws InterruptedException, IOException {
+        if(args.length != 0) {
+            if(args[0].equals("demo")) {
+                new Demo().run(false);
+            }
+        }
         String fichier = "resources/Logo.txt";
         
         try (BufferedReader br = new BufferedReader(new FileReader(fichier))) {
