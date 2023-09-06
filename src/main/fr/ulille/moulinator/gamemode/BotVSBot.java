@@ -5,9 +5,11 @@ import fr.ulille.moulinator.Game;
 
 public class BotVSBot implements GameMode {
 
-    public void run() {
-        Game.p1 = new Bot();
-        Game.p2 = new Bot();
+    public void run(boolean isSave) {
+        if(!isSave) {
+            Game.p1 = new Bot();
+            Game.p2 = new Bot();
+        }
         Game.clearScreen();
         while(!Game.p1.isDead() && !Game.p2.isDead()) {
             Game.clearScreen();

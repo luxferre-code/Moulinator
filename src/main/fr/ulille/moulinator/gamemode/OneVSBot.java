@@ -9,9 +9,11 @@ import fr.ulille.moulinator.Game;
 public class OneVSBot implements GameMode {
 
     @Override
-    public void run() {
-        Game.p1 = CustomPlayer.makePlayer();
-        Game.p2 = new Bot();
+    public void run(boolean isSave) {
+        if(!isSave) {
+            Game.p1 = CustomPlayer.makePlayer();
+            Game.p2 = new Bot();
+        }
         Scanner sc = Game.SCANNER;
         boolean valide = false;
         while (!valide){

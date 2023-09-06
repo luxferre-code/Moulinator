@@ -10,11 +10,13 @@ import fr.ulille.moulinator.Joueur;
 public class OneVSOne implements GameMode{
 
     @Override
-    public void run() {
-        System.out.println("Joueur 1 :");
-        Game.p1 = CustomPlayer.makePlayer();
-        System.out.println("Joueur 2 :");
-        Game.p2 = CustomPlayer.makePlayer();
+    public void run(boolean isSave) {
+        if(!isSave) {
+            System.out.println("Joueur 1 :");
+            Game.p1 = CustomPlayer.makePlayer();
+            System.out.println("Joueur 2 :");
+            Game.p2 = CustomPlayer.makePlayer();
+        }
         Scanner sc = Game.SCANNER;
         boolean valide = false;
         while (!valide){

@@ -12,11 +12,11 @@
       |      |               |               |      |               |           |           |                  
       |      |       G-------H-------I       |      |               |   d-------e-------f   |             
       |      |       |               |       |      |               |   |       |       |   |                   
-      |      |       |               |       |      |               |   |   g---h---i   |   |                   aide :
+      |      |       |               |       |      |               |   |   g---h---i   |   |                              aide :
       |      |       |               |       |      |               |   |   |       |   |   |        
-      J------K-------L               M-------N------O               j---k---l       m---n---o     si vous souhaitez annuler votre choix
-      |      |       |               |       |      |               |   |   |       |   |   |     concernant le déplacement de votre pion,
-      |      |       |               |       |      |               |   |   p---q---r   |   |     veuillez appuyer sur la touche "z".
+      J------K-------L               M-------N------O               j---k---l       m---n---o               si vous souhaitez annuler votre choix
+      |      |       |               |       |      |               |   |   |       |   |   |               concernant le déplacement de votre pion,
+      |      |       |               |       |      |               |   |   p---q---r   |   |               veuillez appuyer sur la touche "z".
       |      |       |               |       |      |               |   |       |       |   |     
       |      |       P-------Q-------R       |      |               |   s-------t-------u   |
       |      |               |               |      |               |           |           |
