@@ -18,7 +18,7 @@ import java.util.Scanner;
     
 public sealed class Joueur implements Serializable permits Bot {
     public final String NAME;
-    private Color color;
+    Color color;
     private static final Color BASE_COLOR = Color.ANSI_RED;
     public int onBoard;
     public boolean allPlaced;
@@ -82,11 +82,6 @@ public sealed class Joueur implements Serializable permits Bot {
                 int ennemiSlot = chooseEnnemiSlot();
                 Game.Board.setJoueurOnSlot(ennemiSlot, null);
                 System.out.println(this.NAME + " remove " + ennemiSlot);
-                if(Game.p1.equals(this)) {
-                    Game.p2.onBoard--;
-                } else {
-                    Game.p1.onBoard--;
-                }
             }
         } catch(NoHavingSlotException e) {
             Game.logger("No ennemi slot !");
@@ -198,7 +193,7 @@ public sealed class Joueur implements Serializable permits Bot {
     }
 
     public boolean isDead(){
-        return this.onBoard <= 2 && this.allPlaced;
+        return Game.Board.allPositionPlayer(this).size() <= 2 && this.allPlaced;
     }
 
     public static void main(String[] args) {

@@ -155,9 +155,9 @@ public class Board implements Iterable<Slot>, Serializable {
                 String[] line = sc.nextLine().split(",");
                 List<Integer> temp = new ArrayList<>();
                 for(String s : line[1].split("\\.")) {
-                    temp.add(Integer.parseInt(s) - 1);
+                    temp.add(Integer.parseInt(s));
                 }
-                t.put(Integer.parseInt(line[0]) - 1, temp);
+                t.put(Integer.parseInt(line[0]), temp);
             }
         } catch(Exception ignored) {}
         return t;
