@@ -102,10 +102,4 @@ public final class Bot extends Joueur {
 
         return true;
     }
-
-    public static void main(String[] args) {
-        Bot b = new Bot();
-        b.choose();
-    }
-    
 }

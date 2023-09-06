@@ -5,6 +5,7 @@ import fr.ulille.moulinator.enums.Color;
 
 public final class OptionsMenu {
     public static void execute() {
+        Game.clearScreen();
         String base = Color.ANSI_GREEN + "~ Config Menu ~\n" +
                             Color.ANSI_BLUE + "1 - Max slots for user (value: " + Color.ANSI_YELLOW + Game.maxBilles + Color.ANSI_BLUE + ")\n" +
                             Color.ANSI_BLUE + "2 - Min slots for user before death (value: " + Color.ANSI_YELLOW + Game.minBilles + Color.ANSI_BLUE +")\n" +

@@ -41,9 +41,4 @@ public class CustomPlayer {
         j = new Joueur(nom, Color.values()[Integer.parseInt(color)]);
         return j;
     }
-    
-    public static void main(String[] args){
-        System.out.println(makePlayer());
-        System.out.println(makePlayer());
-    }
 }

@@ -23,10 +23,4 @@ public class BotVSBot implements GameMode {
         }
         gameOver();
     }
-
-    public static void main(String[] args) {
-        GameMode gameMode = new BotVSBot();
-        gameMode.run();
-    }
-
 }

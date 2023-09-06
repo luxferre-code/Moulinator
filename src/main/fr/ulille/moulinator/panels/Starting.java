@@ -1,5 +1,6 @@
 package fr.ulille.moulinator.panels;
 
+import fr.ulille.moulinator.Game;
 import fr.ulille.moulinator.gamemode.Demo;
 
 import java.io.BufferedReader;
@@ -17,7 +18,6 @@ import java.util.ArrayList;
  * @author BERRAKANE ADHAM
  */
 public class Starting {
-
 
     /**
      * Point d'entrée du programme
@@ -46,6 +46,7 @@ public class Starting {
                 }
             }
             for (int i = 0; i<taille; i =i + 1){
+                Game.clearScreen();
                 for(String s : texte) {
                     if(s.length() >= i) {
                         System.out.println(s.substring(0, i));
@@ -54,9 +55,8 @@ public class Starting {
                     }
                 }
                 Thread.sleep(50);
-                System.out.print("\033[H\033[2J");  
+                System.out.print("\033[H\033[2J");
                 System.out.flush();
-
             }
         } catch (IOException ignored) {}
         Menu.execute();

@@ -288,13 +288,4 @@ public sealed class Joueur implements Serializable permits Bot {
     public Color getColor() {
         return color;
     }
-
-    public static void main(String[] args) {
-        Joueur j = CustomPlayer.makePlayer();
-        Game.info(j.toString());
-        Game.info(Game.Board.toString());
-        j.choose();
-        Game.info(Game.Board.toString());
-    }
-
 }

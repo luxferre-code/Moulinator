@@ -36,6 +36,7 @@ public class Menu {
      * Menu du jeu
      */
     public static void execute() throws InterruptedException {
+        Game.clearScreen();
         try(BufferedReader br = new BufferedReader(new FileReader(new File("resources/Logo.txt")))) {
             String line;
             while((line = br.readLine()) != null) {
@@ -56,6 +57,7 @@ public class Menu {
                 7. Quit""");
 
         int choice = choose();
+        Game.clearScreen();
         switch(choice) {
             case 1 -> {
                 Game.gameType = GameType.PLAYER_VS_PLAYER;
@@ -106,10 +108,5 @@ public class Menu {
             default -> throw new IllegalStateException("Unexpected value: " + choice);
         }
     }
-
-    public static void main(String[] args) throws InterruptedException {
-        execute();
-    }
-
 }
 

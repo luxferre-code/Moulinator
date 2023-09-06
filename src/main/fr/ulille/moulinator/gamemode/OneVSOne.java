@@ -46,9 +46,4 @@ public class OneVSOne implements GameMode{
         }
         gameOver();
     }
-
-    public static void main(String[] args) {
-        GameMode gameMode = new OneVSOne();
-        gameMode.run();
-    }
 }

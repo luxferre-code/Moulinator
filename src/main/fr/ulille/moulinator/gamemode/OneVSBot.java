@@ -43,10 +43,4 @@ public class OneVSBot implements GameMode {
         }
         gameOver();
     }
-
-    public static void main(String[] args) {
-        GameMode gameMode = new OneVSBot();
-        gameMode.run();
-    }
-
 }
