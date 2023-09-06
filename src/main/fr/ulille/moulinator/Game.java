@@ -1,8 +1,14 @@
 package fr.ulille.moulinator;
 
+import fr.ulille.moulinator.gamemode.BotVSBot;
+import fr.ulille.moulinator.gamemode.GameMode;
+import fr.ulille.moulinator.gamemode.OneVSBot;
+import fr.ulille.moulinator.gamemode.OneVSOne;
+
 import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
 import java.util.Scanner;
 
 public final class Game implements Serializable {
@@ -55,7 +61,15 @@ public final class Game implements Serializable {
     }
 
     public static void startGame() {
-        //TODO
+        Map<GameType, Class> gameTypeClassMap = Map.of(
+                GameType.PLAYER_VS_PLAYER, OneVSOne.class,
+                GameType.PLAYER_VS_BOT, OneVSBot.class,
+                GameType.BOT_VS_BOT, BotVSBot.class
+        );
+        try {
+            GameMode gameMode = (GameMode) gameTypeClassMap.get(gameType).getDeclaredConstructor().newInstance();
+            gameMode.run();
+        } catch(Exception ignored) {}
     }
 
     public static void clearScreen() {
