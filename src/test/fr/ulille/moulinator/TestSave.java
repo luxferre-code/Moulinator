@@ -1,4 +1,4 @@
-package fr.ulille.moulinator;
+package test.fr.ulille.moulinator;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
