@@ -130,9 +130,7 @@ public final class Game implements Serializable {
         try {
             Process process = new ProcessBuilder("clear").inheritIO().start();
             process.waitFor();
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-        }
+        } catch (IOException | InterruptedException ignored) {}
     }
 
     @Override
