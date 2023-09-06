@@ -64,12 +64,16 @@ public final class Bot extends Joueur {
                 first = this.chooseSlotOwned();
                 to = this.chooseSlotToMove(first);
             } catch (SlotHavingOwnerException e) {
+                if(Game.debugMod) e.printStackTrace();
                 choose();
                 return false;
             } catch(NoHavingSlotException e) {
+                if(Game.debugMod) e.printStackTrace();
                 Game.logger("No slot owned !");
             }
-            System.out.println("Bot move " + first + " to " + to);
+            if(Game.debugMod){
+                Game.info("Bot move " + first + " to " + to);
+            }
             Game.Board.moveSlot(first, to);
             slotPlace = to;
         } else {
@@ -77,7 +81,9 @@ public final class Bot extends Joueur {
             Collections.shuffle(temps);
             int first = temps.get(0);
             Game.Board.setJoueurOnSlot(first, this);
-            System.out.println("Bot place on " + first);
+            if(Game.debugMod){
+                Game.info("Bot place on " + first);
+            }
             this.addPiecePlaced();
             this.onBoard++;
             slotPlace = first;
@@ -86,7 +92,9 @@ public final class Bot extends Joueur {
         if(Game.Board.sontAligne(slotPlace)) {
             int ennemiSlot = chooseEnnemiSlot();
             Game.Board.setJoueurOnSlot(ennemiSlot, null);
-            System.out.println(this.NAME + " remove " + ennemiSlot);
+            if(Game.debugMod){
+                Game.info(this.NAME + " remove " + ennemiSlot);
+            }
         }
 
         return true;

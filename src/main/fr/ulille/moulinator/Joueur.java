@@ -4,7 +4,6 @@ package fr.ulille.moulinator;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * <p>La classe qui initialise des joueur</p>
@@ -94,7 +93,9 @@ public sealed class Joueur implements Serializable permits Bot {
                     Game.p2 = null;
                     Game.Board = new Board();
                     Menu.execute();
-                } catch(Exception ignored) { }
+                } catch(Exception ignored) {
+                    if(Game.debugMod) ignored.printStackTrace();
+                 }
                 System.exit(0);
             }
         }
@@ -111,18 +112,24 @@ public sealed class Joueur implements Serializable permits Bot {
                     return choose();
                 }
                 Game.Board.moveSlot(from, to);
-                System.out.println(this.NAME + " move " + from + " to " + to);
+                if(Game.debugMod){
+                    System.out.println(this.NAME + " move " + from + " to " + to);
+                }
                 slotPlace = to;
             } catch(NoHavingSlotException e) {
+                if(Game.debugMod) e.printStackTrace();
                 Game.logger("No slot owned !");
             } catch(SlotHavingOwnerException e) {
+                if(Game.debugMod) e.printStackTrace();
                 Game.logger("No free slot !");
                 return choose();
             }
         } else {
             int slot = chooseFreeSlot();
             Game.Board.setJoueurOnSlot(slot, this);
-            System.out.println(this.NAME + " place on " + slot);
+            if(Game.debugMod){
+                System.out.println(this.NAME + " place on " + slot);
+            }
             this.addPiecePlaced();
             this.onBoard++;
             slotPlace = slot;
@@ -132,9 +139,12 @@ public sealed class Joueur implements Serializable permits Bot {
             if(Game.Board.sontAligne(slotPlace)) {
                 int ennemiSlot = chooseEnnemiSlot();
                 Game.Board.setJoueurOnSlot(ennemiSlot, null);
-                System.out.println(this.NAME + " remove " + ennemiSlot);
+                if(Game.debugMod){
+                    System.out.println(this.NAME + " remove " + ennemiSlot);
+                }
             }
         } catch(NoHavingSlotException e) {
+            if(Game.debugMod) e.printStackTrace();
             Game.logger("No ennemi slot !");
         }
 
