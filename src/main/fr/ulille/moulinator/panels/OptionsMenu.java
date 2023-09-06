@@ -10,7 +10,8 @@ public final class OptionsMenu {
                             Color.ANSI_BLUE + "1 - Max slots for user (value: " + Color.ANSI_YELLOW + Game.maxBilles + Color.ANSI_BLUE + ")\n" +
                             Color.ANSI_BLUE + "2 - Min slots for user before death (value: " + Color.ANSI_YELLOW + Game.minBilles + Color.ANSI_BLUE +")\n" +
                             Color.ANSI_BLUE + "3 - Debug mod (value: " + Color.ANSI_YELLOW + (Game.debugMod ? "yes" : "no") + Color.ANSI_BLUE +")\n" +
-                            "4 - Main menu" + Color.ANSI_RESET;
+                            Color.ANSI_BLUE + "4 - Delay for bot (value: " + Color.ANSI_YELLOW + Game.DELAY_BOT + Color.ANSI_BLUE +" in ms)\n" +
+                            "5 - Main menu" + Color.ANSI_RESET;
         System.out.println(base);
         int s = -1;
         do {
@@ -18,14 +19,15 @@ public final class OptionsMenu {
             try {
                 s = rep.charAt(0) - '0';
             }catch(Exception ignored) {}
-        }while(s <= 0 || s > 4);
+        }while(s <= 0 || s > 5);
 
         switch(s) {
             case 1 -> Game.maxBilles = newValue(Game.minBilles, 11);
             case 2 -> Game.minBilles = newValue(1, Game.maxBilles - 1);
             case 3 -> Game.debugMod = newBoolean();
+            case 4 -> Game.DELAY_BOT = newValue(0, 10000);
         }
-        if(s == 4) return;
+        if(s == 5) return;
         execute();
     }
 

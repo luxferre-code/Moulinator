@@ -43,6 +43,8 @@ public final class Game implements Serializable {
     public static boolean debugMod = false;
     private boolean debugMod_save;
     private int maxBilles_save, minBilles_save;
+    public static int DELAY_BOT = 1000;
+    private int delayBot_save;
 
 
     /**
@@ -79,6 +81,7 @@ public final class Game implements Serializable {
             this.maxBilles_save = maxBilles;
             this.minBilles_save = minBilles;
             this.debugMod_save = debugMod;
+            this.delayBot_save = DELAY_BOT;
             out.writeObject(this);
             out.close();
             fileOut.close();
@@ -102,6 +105,7 @@ public final class Game implements Serializable {
             Game.maxBilles = g.maxBilles_save;
             Game.minBilles = g.minBilles_save;
             Game.debugMod = g.debugMod_save;
+            Game.DELAY_BOT = g.delayBot_save;
             in.close();
             fileIn.close();
             return g;
