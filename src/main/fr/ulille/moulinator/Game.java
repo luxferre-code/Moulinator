@@ -8,6 +8,7 @@ import fr.ulille.moulinator.gamemode.OneVSOne;
 import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -148,6 +149,10 @@ public final class Game implements Serializable {
                 "Joueur 1 : " + p1 + "\n" +
                 "Joueur 2 : " + p2 + "\n" +
                 "Plateau : " + Board.toString();
+    }
+
+    public static Color rdmColor() {
+        return Color.values()[new Random().nextInt(1, Color.values().length)];
     }
 
 }
