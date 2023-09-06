@@ -4,6 +4,15 @@ import java.io.File;
 import java.io.Serializable;
 import java.util.*;
 
+/**
+ * <p>La classe qui initialise des joueur</p>
+ * @author HOCINE CHEBOUT
+ * @author VALENTIN THUILLER
+ * @author LEIBOVICI EZECHIEL
+ * @author BARBEAU SIMON
+ * @author TOUMJI ABDALLAH
+ * @author BERRAKANE ADHAM
+ */
 public class Board implements Iterable<Slot>, Serializable {
 
     public int height, width;

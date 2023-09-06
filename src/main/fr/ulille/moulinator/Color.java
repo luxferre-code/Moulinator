@@ -2,6 +2,16 @@ package fr.ulille.moulinator;
 
 import java.io.Serializable;
 
+/**
+ * <p>La classe qui initialise des joueur</p>
+ * @author HOCINE CHEBOUT
+ * @author VALENTIN THUILLER
+ * @author LEIBOVICI EZECHIEL
+ * @author BARBEAU SIMON
+ * @author TOUMJI ABDALLAH
+ * @author BERRAKANE ADHAM
+ */
+
 public enum Color implements Serializable {
     /**
      * La couleur qui sera considérer comme par defaut
@@ -56,6 +66,10 @@ public enum Color implements Serializable {
     private final String colorCode;
     private boolean isUsed = false;
 
+    /**
+     * Constructeur de l'énumération Color
+     * @param colorCode
+     */
     Color(String colorCode){
         this.colorCode = colorCode;
     }
@@ -80,17 +94,25 @@ public enum Color implements Serializable {
         return this.colorCode + "This text is "+ getColor() + ANSI_RESET;
     }
 
-    public static void main(String[] args) {
-        Color colorCode = Color.ANSI_PURPLE;
-        System.out.println(colorCode.showColor());
-        System.out.println(colorCode.getColor());
-    }
-
+    /**
+     * Methode qui verifie si la couleur du joueur est utilisé
+     * @return boolean : si la couleur est utilisé
+     */
     public boolean isUsed() {
         return isUsed;
     }
 
+    /**
+     * Methode qui permet de changer la disponibilité de la couleur
+     * @param used : si la couleur est utilisé ou non
+     */
     public void setUsed(boolean used) {
         isUsed = used;
+    }
+
+    public static void main(String[] args) {
+        Color colorCode = Color.ANSI_PURPLE;
+        System.out.println(colorCode.showColor());
+        System.out.println(colorCode.getColor());
     }
 }

@@ -4,7 +4,6 @@ package fr.ulille.moulinator;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * <p>La classe qui initialise des joueur</p>
@@ -25,6 +24,13 @@ public sealed class Joueur implements Serializable permits Bot {
     protected int nbPiecePlaced = 0;
     public static final int NB_MAX_PIECE = 6;
 
+    /**
+     * Constructeur de la classe Joueur completement défini
+     * @param name : nom du joueur
+     * @param color : couleur du joueur
+     * @param onBoard : nombre de pion sur le plateau
+     * @param allPlaced : si le joueur a placé tous ses pions
+     */
     public Joueur(String name, Color color, int onBoard, boolean allPlaced){
         this.NAME = name;
         this.onBoard = onBoard;
@@ -32,20 +38,37 @@ public sealed class Joueur implements Serializable permits Bot {
         this.color = color;
     }
 
+    /**
+     * Constructeur de la classe Joueur avec le nom et la couleur
+     * @param name : nom du joueur
+     * @param color : couleur du joueur
+     */
     public Joueur(String name, Color color){
         this.NAME = name;
         this.color = color;
     }
     
+    /**
+     * Constructeur de la classe Joueur avec le nom et la couleur par defaut
+     * @param name : nom du joueur
+     */
     public Joueur(String name){
         this.NAME = name;
         this.color = BASE_COLOR;
     }
 
+    /**
+     * Constructeur de la classe Joueur avec la couleur et le nom par defaut
+     */
     public Joueur(){
         this.NAME = "undefined";
         this.color = BASE_COLOR;
     }
+
+
+    /**
+     * @return String : le nom du joueur
+     */
     public String getName(){
         return this.NAME;
     }
@@ -72,6 +95,17 @@ public sealed class Joueur implements Serializable permits Bot {
             Game.Board.setJoueurOnSlot(slot, this);
             System.out.println(this.NAME + " place on " + slot);
             this.addPiecePlaced();
+        }
+        return false;
+    }
+
+    /**
+     * Methode qui verifie la couleur du joueur
+     * @param myColor : la couleur du joueur
+     * @return boolean : si la couleur est celle du joueur
+     */
+    public boolean chooseIsYours(Color myColor){
+        if(this.color.equals(myColor)){
             return true;
         }
         return false;

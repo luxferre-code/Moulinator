@@ -5,10 +5,18 @@ import java.util.List;
 
 public final class Bot extends Joueur {
 
+    /**
+     * Constructeur de la classe Bot avec le nom "Bot" par défaut et la couleur par defaut
+     */
     public Bot(){
         super("Bot");
     }
 
+    /**
+     * M
+     * @return int : la position du slot sur le plateau
+     * @throws NoHavingSlotException : Le slot choisie n'est pas possédé par le bot
+     */
     public int chooseSlotOwned() throws NoHavingSlotException {
         List<Integer> temp = Game.Board.allPositionPlayer(this);
         if(temp.isEmpty()) { throw new NoHavingSlotException("No slot owned"); }
@@ -16,6 +24,11 @@ public final class Bot extends Joueur {
         return temp.get(0);
     }
 
+    /**
+     * @param slot
+     * @return int : la position du slot sur le plateau où le bot veux déplacer son pion
+     * @throws SlotHavingOwnerException : Le slot choisie est déjà possédé par un joueur ou est déjà occupé
+     */
     public int chooseSlotToMove(int slot) throws SlotHavingOwnerException {
         List<Integer> temp = Game.Board.allFreePosition(slot);
         if(temp.isEmpty()) { throw new SlotHavingOwnerException("No free slot"); }
@@ -23,6 +36,12 @@ public final class Bot extends Joueur {
         return temp.get(0);
     }
 
+    /**
+     * Methode qui permet au bot de choisir un slot et de le déplacer
+     * @see
+     * @see
+     * @return boolean : si le bot a réussi à jouer
+     */
     public boolean choose() {
         if(this.allPlaced) {
             int first = 0, to = 0;
