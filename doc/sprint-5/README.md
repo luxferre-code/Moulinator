@@ -4,23 +4,24 @@
 
 ### Ce que nous avons fait durant ce sprint
 Nous avons fait : 
-- US-024 :
-- US-019D :
-- US-022 :
-- US-019B
-- US-019C
-- US-012
-- US-023
+- US-024 : Choix du type de jeu
+- US-019D : Position pion
+- US-022 : Fusion des branches
+- US-019B : Verifier des possibilités
+- US-019C : Déplacement
+- US-012 : Appliquer les règles
+- US-023 : Javadoc
 
 ### Ce que nous allons faire durant le prochain sprint
-- US-011A
-- US-011B
-- US-011C
+- US-011A : J1 vs J2
+- US-011B : J1 vs Bot
+- US-011C : Bot vs Bot
+- US-009A : Choix case
 
 ## Rétrospective
 
 ### Sur quoi avons nous butté ?
-L'US-011 aurait du etre répartie entre plus de membre afin de faciliter sa complétion
+L'US-019 aurait du etre répartie entre plus de membre afin de faciliter sa complétion
 Produire un aspect visuel à chaque sprint afin de présenter une meilleure démo au client
 
 ### PDCA

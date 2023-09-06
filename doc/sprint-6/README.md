@@ -1,13 +1,10 @@
-
-# Sprint 2
+# Sprint 6
 
 ## Démo + Planification du sprint suivant
 
 ### Ce que nous avons fait durant ce sprint
 Donnez ici la liste des histoires utilisateurs que vous avez livrées durant ce sprint.
 Vous pouvez utiliser cette liste pour préparer votre démo.
-- US 8 : création du menu
-- US 18 : écriture de la doc pour la spécialisation et l'aide pour les règles
 
 ### Ce que nous allons faire durant le prochain sprint
 Donnez ici la liste des histoires utilisateurs que vous vous engagez à terminer durant le prochain sprint.
@@ -15,13 +12,16 @@ Donnez ici la liste des histoires utilisateurs que vous vous engagez à terminer
 ## Rétrospective
 
 ### Sur quoi avons nous butté ?
-- Nous avons prévu trop d'US à faire d'un coup
-- Nos US sont trop chargées réduisant ainsi l'éfficacité de travail
+Lister ici tout ce qui était un peut moins bien que parfait.
+* Avez-vous terminé tout ce que vous vous étiez engagé à faire ?
+* Étiez -vous prêts au moment de la démo ?
+* ...
 
 ### PDCA
-* Nous pouvons mesurer l'amélioration en vérifiant que nous avons fini tout ce qui était prévu au prochain sprint
-* Transformer certaines US en EPIC afin de faciliter la répartition des US
-* Nous allons tester de quantifier la valeur des US que nous pouvons faire en un sprint
+* De tous ces éléments quel est celui que vous voulez améliorer ?
+* Comment pouvez-vous mesurer qu'il s'améliore ?
+* Quelles sont toutes les options possible pour l'améliorer ?
+* Qu'allez-vous tester pour l'améliorer ?
 
 # Mémo
 N’oubliez pas d’ajouter une photo du radiateur d’information au moment de la rétrospective.
