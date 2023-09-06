@@ -66,6 +66,9 @@ public sealed class Joueur implements Serializable permits Bot {
             case "menu" -> {
                 try {
                     Menu.execute();
+                    Game.p1 = null;
+                    Game.p2 = null;
+                    Game.Board = new Board();
                 } catch(Exception ignored) { }
                 System.exit(0);
             }
@@ -147,15 +150,17 @@ public sealed class Joueur implements Serializable permits Bot {
 
     public int chooseSlotOwned() throws NoHavingSlotException {
         System.out.print("Choose a slot to move: ");
-        char c;
+        char c = '.';
         do {
             String s = Game.SCANNER.next();
-            c = s.charAt(0);
-            c = removeMaj(c);
-            this.executeCommand(s);
-            if(!chooseIsValid(c)) {
-                Game.logger("Invalid slot !");
+            if(!this.executeCommand(s)) {
+                c = s.charAt(0);
+                c = removeMaj(c);
+                if(!chooseIsValid(c)) {
+                    Game.logger("Invalid slot !");
+                }
             }
+
         } while(!chooseIsValid(c));
         return c - 'a';
     }

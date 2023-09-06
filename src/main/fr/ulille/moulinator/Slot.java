@@ -73,7 +73,7 @@ public class Slot implements Serializable {
 
     @Override
     public String toString() {
-        if(owner == null) { return "O"; }
+        if(owner == null) { return "0"; }
         return owner.toString();
     }
 }
