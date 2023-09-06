@@ -1,4 +1,4 @@
-package fr.ulille.moulinator;
+package fr.ulille.moulinator.panels;
 
 import fr.ulille.moulinator.gamemode.Demo;
 

@@ -2,8 +2,7 @@ package fr.ulille.moulinator.gamemode;
 
 import java.util.Scanner;
 
-import fr.ulille.moulinator.Color;
-import fr.ulille.moulinator.CustomPlayer;
+import fr.ulille.moulinator.panels.CustomPlayer;
 import fr.ulille.moulinator.Game;
 import fr.ulille.moulinator.Joueur;
 

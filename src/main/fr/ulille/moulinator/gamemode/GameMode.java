@@ -1,6 +1,6 @@
 package fr.ulille.moulinator.gamemode;
 
-import fr.ulille.moulinator.Color;
+import fr.ulille.moulinator.enums.Color;
 import fr.ulille.moulinator.Game;
 
 public interface GameMode {

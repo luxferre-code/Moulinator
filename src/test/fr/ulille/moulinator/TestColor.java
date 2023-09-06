@@ -1,6 +1,6 @@
-package test.fr.ulille.moulinator;
+package fr.ulille.moulinator;
 
-import fr.ulille.moulinator.Color;
+import fr.ulille.moulinator.enums.Color;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import org.junit.jupiter.api.BeforeEach;

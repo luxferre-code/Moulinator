@@ -1,7 +1,6 @@
-package fr.ulille.moulinator;
-
+package fr.ulille.moulinator.exceptions;
 /**
- * <p>La classe qui gere l'exception lié au slot déja occupé</p>
+ * <p>La classe qui gere l'exception lié au slot</p>
  * @author HOCINE CHEBOUT
  * @author VALENTIN THUILLER
  * @author LEIBOVICI EZECHIEL
@@ -10,13 +9,13 @@ package fr.ulille.moulinator;
  * @author BERRAKANE ADHAM
  * @see Exception
  */
-public class SlotHavingOwnerException extends Exception {
-
+public class NoHavingSlotException extends Exception {
 
     /**
      * @param message : le message d'erreur
      */
-    public SlotHavingOwnerException(String message) {
+    public NoHavingSlotException(String message) {
         super(message);
     }
+
 }

@@ -1,4 +1,8 @@
-package fr.ulille.moulinator;
+package fr.ulille.moulinator.panels;
+
+import fr.ulille.moulinator.enums.Color;
+import fr.ulille.moulinator.Game;
+import fr.ulille.moulinator.Joueur;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,7 @@
-package fr.ulille.moulinator;
+package fr.ulille.moulinator.panels;
+
+import fr.ulille.moulinator.Game;
+import fr.ulille.moulinator.enums.GameType;
 
 import java.util.Scanner;
 import java.io.*;

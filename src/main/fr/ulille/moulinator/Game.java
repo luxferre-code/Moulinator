@@ -1,5 +1,7 @@
 package fr.ulille.moulinator;
 
+import fr.ulille.moulinator.enums.Color;
+import fr.ulille.moulinator.enums.GameType;
 import fr.ulille.moulinator.gamemode.BotVSBot;
 import fr.ulille.moulinator.gamemode.GameMode;
 import fr.ulille.moulinator.gamemode.OneVSBot;

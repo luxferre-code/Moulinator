@@ -1,4 +1,4 @@
-package test.fr.ulille.moulinator;
+package fr.ulille.moulinator;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import fr.ulille.moulinator.Board;
-import fr.ulille.moulinator.Color;
+import fr.ulille.moulinator.enums.Color;
 import fr.ulille.moulinator.Joueur;
 
 public class TestJoueur {
