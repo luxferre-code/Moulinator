@@ -9,7 +9,7 @@ public class CustomPlayer {
     public static Joueur makePlayer() {
         Joueur j;
         Scanner sc = Game.SCANNER;
-        System.out.println("Quel est le nom du joueur ? ");
+        System.out.println("Quel est le nom du joueur ?");
         String nom = sc.next();
         String color = "";
         System.out.println("Maintenant choisis une couleur:");
