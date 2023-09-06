@@ -41,6 +41,7 @@ public class OneVSBot implements GameMode {
                 System.out.println("No more moves !");
             }
         }
+        gameOver();
     }
 
     public static void main(String[] args) {

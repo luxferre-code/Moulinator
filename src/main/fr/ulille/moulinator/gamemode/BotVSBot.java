@@ -16,13 +16,12 @@ public class BotVSBot implements GameMode {
             System.out.println(Game.Board);
             System.out.println("It's " + (Game.isPlayer1Turn ? Game.p1 : Game.p2) + " turn !");
             if((Game.isPlayer1Turn ? Game.p1 : Game.p2).choose()) {
-                System.out.println("Bot 1 => nbPiecePlaced: " + Game.Board.allPositionPlayer((Game.isPlayer1Turn ? Game.p1 : Game.p2)).size() + " allPlaced: " + (Game.isPlayer1Turn ? Game.p1 : Game.p2).allPlaced);
+                if(Game.debugMod) System.out.println("Bot 1 => nbPiecePlaced: " + Game.Board.allPositionPlayer((Game.isPlayer1Turn ? Game.p1 : Game.p2)).size() + " allPlaced: " + (Game.isPlayer1Turn ? Game.p1 : Game.p2).allPlaced);
                 Game.isPlayer1Turn = !Game.isPlayer1Turn;
-                try { Thread.sleep(1000); } catch (Exception ignored) { }
-            } else {
-                System.out.println("No more moves !");
+                try { Thread.sleep(1); } catch (Exception ignored) { }
             }
         }
+        gameOver();
     }
 
     public static void main(String[] args) {

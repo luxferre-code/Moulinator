@@ -45,6 +45,7 @@ public class OneVSOne implements GameMode{
                 System.out.println("No more moves !");
             }
         }
+        gameOver();
     }
 
     public static void main(String[] args) {
