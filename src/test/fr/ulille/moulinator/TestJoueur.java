@@ -12,7 +12,7 @@ import fr.ulille.moulinator.Board;
 import fr.ulille.moulinator.Joueur;
 
 public class TestJoueur {
-    Joueur h;
+    /*Joueur h;
     Joueur v;
     Joueur a;
 
@@ -72,7 +72,7 @@ public class TestJoueur {
         b.setJoueurOnSlot(9, v);
         b.setJoueurOnSlot(10, v);
         b.setJoueurOnSlot(11, v);
-    }
+    }*/
 
 
     

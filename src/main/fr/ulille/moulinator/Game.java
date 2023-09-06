@@ -1,8 +1,14 @@
 package fr.ulille.moulinator;
 
+import fr.ulille.moulinator.gamemode.BotVSBot;
+import fr.ulille.moulinator.gamemode.GameMode;
+import fr.ulille.moulinator.gamemode.OneVSBot;
+import fr.ulille.moulinator.gamemode.OneVSOne;
+
 import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
 import java.util.Scanner;
 
 public final class Game implements Serializable {
@@ -11,48 +17,21 @@ public final class Game implements Serializable {
      * Joueur p1, p2 : les joueurs de la partie
      */
     public static Joueur p1, p2;
-
-    /**
-     * Board Board : le plateau de la partie
-     */
     public static Board Board = new Board();
-
-    /**
-     * GameType gameType : le type de la partie
-     */
     public static GameType gameType;
-
-    /**
-     * boolean isPlayer1Turn : si c'est au tour du joueur 1 (par defaut true)
-     */
+    private GameType gameType_save;
     public static boolean isPlayer1Turn = true;
-
-    /**
-     * Joueur p1_save, p2_save : les joueurs de la partie sauvegardée
-     */
     private Joueur p1_save, p2_save;
-
-    /**
-     * Board Board_save : le plateau de la partie sauvegardée
-     */
     private Board Board_save;
-
-    /**
-     * boolean isPlayer1Turn_save : si c'est au tour du joueur 1 de la partie sauvegardée
-     */
     private boolean isPlayer1Turn_save;
-
-
-    /**
-     * Long serialVersionUID : ID pour la serialisation
-     * @see Serializable
-     */
     private static final long serialVersionUID = 1L;
-
-    /**
-     * Scanner SCANNER : le scanner pour lire les entrées clavier
-     */
     public static final Scanner SCANNER = new Scanner(System.in);
+    public static int maxBilles = 9;
+    public static int minBilles = 2;
+    public static boolean debugMod = false;
+    private boolean debugMod_save;
+    private int maxBilles_save, minBilles_save;
+
 
     /**
      * Affiche les erreurs en rouge
@@ -62,6 +41,10 @@ public final class Game implements Serializable {
      */
     public static void logger(String s) {
         System.out.println(Color.ANSI_RED + s + Color.ANSI_RESET);
+    }
+
+    public static void info(String s) {
+        System.out.println(Color.ANSI_BLUE + "[MOULINFO]: " + s + Color.ANSI_RESET);
     }
 
     /**
@@ -74,12 +57,16 @@ public final class Game implements Serializable {
      */
     public boolean saveGame() {
         try {
-            FileOutputStream fileOut = new FileOutputStream("resources/" + LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) + ".ser");
+            FileOutputStream fileOut = new FileOutputStream("resources/save.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             this.p1_save = p1;
             this.p2_save = p2;
             this.Board_save = Board;
             this.isPlayer1Turn_save = isPlayer1Turn;
+            this.gameType_save = gameType;
+            this.maxBilles_save = maxBilles;
+            this.minBilles_save = minBilles;
+            this.debugMod_save = debugMod;
             out.writeObject(this);
             out.close();
             fileOut.close();
@@ -90,21 +77,19 @@ public final class Game implements Serializable {
         }
     }
 
-    /**
-     * @param nameFile : le nom du fichier de la partie à charger
-     * @return Game : la partie chargée
-     * @see IOException
-     * @see ClassNotFoundException
-     */
-    public static Game loadGame(String nameFile) {
+    public static Game loadGame() {
         try {
-            FileInputStream fileIn = new FileInputStream("resources/" + nameFile);
+            FileInputStream fileIn = new FileInputStream("resources/save.ser");
             ObjectInputStream in = new ObjectInputStream(fileIn);
             Game g = (Game) in.readObject();
             Game.p1 = g.p1_save;
             Game.p2 = g.p2_save;
             Game.Board = g.Board_save;
             Game.isPlayer1Turn = g.isPlayer1Turn_save;
+            Game.gameType = g.gameType_save;
+            Game.maxBilles = g.maxBilles_save;
+            Game.minBilles = g.minBilles_save;
+            Game.debugMod = g.debugMod_save;
             in.close();
             fileIn.close();
             return g;
@@ -116,7 +101,29 @@ public final class Game implements Serializable {
      * Methode qui lance la partie
      */
     public static void startGame() {
-        //TODO
+        GameMode gameMode;
+        switch(Game.gameType) {
+            case PLAYER_VS_PLAYER -> { gameMode = new OneVSOne(); }
+            case PLAYER_VS_BOT -> { gameMode = new OneVSBot(); }
+            case BOT_VS_BOT -> { gameMode = new BotVSBot(); }
+            default -> {
+                Game.logger("Error while starting game !");
+                return;
+            }
+        }
+        gameMode.run(Game.p1 != null && Game.p2 != null);
+    }
+
+    public static void clearScreen() {
+        try {
+            final String os = System.getProperty("os.name");
+            if (os.contains("Windows")) {
+                Runtime.getRuntime().exec("cls");
+            }
+            else {
+                Runtime.getRuntime().exec("clear");
+            }
+        } catch (final Exception ignored) { }
     }
 
     @Override

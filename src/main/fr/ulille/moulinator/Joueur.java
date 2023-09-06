@@ -4,6 +4,7 @@ package fr.ulille.moulinator;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * <p>La classe qui initialise des joueur</p>
@@ -16,24 +17,12 @@ import java.util.List;
  */
     
 public sealed class Joueur implements Serializable permits Bot {
-    /**
-     * String : le nom du joueur
-     */
     public final String NAME;
-
-    /**
-     * Color : la couleur du joueur
-     */
-    private Color color;
-
-    /**
-     * Color : la couleur par defaut du joueur
-     */
+    Color color;
     private static final Color BASE_COLOR = Color.ANSI_RED;
     public int onBoard;
     public boolean allPlaced;
     protected int nbPiecePlaced = 0;
-    public static final int NB_MAX_PIECE = 9;
 
     /**
      * Constructeur de la classe Joueur completement défini
@@ -84,7 +73,36 @@ public sealed class Joueur implements Serializable permits Bot {
         return this.NAME;
     }
 
+    private boolean executeCommand(String cmd) {
+        switch(cmd) {
+            case "save" -> {
+                if(new Game().saveGame()) {
+                    Game.info("Game saved successfully !");
+                } else {
+                    Game.logger("Error while saving game !");
+                }
+                return true;
+            }
+            case "quit" -> {
+                Game.info("Goodbye ! :P");
+                System.exit(0);
+                return true;
+            }
+            case "menu" -> {
+                try {
+                    Game.p1 = null;
+                    Game.p2 = null;
+                    Game.Board = new Board();
+                    Menu.execute();
+                } catch(Exception ignored) { }
+                System.exit(0);
+            }
+        }
+        return false;
+    }
+
     public boolean choose() {
+        int slotPlace = -1;
         if(this.allPlaced) {
             try {
                 int from = chooseSlotOwned();
@@ -94,7 +112,7 @@ public sealed class Joueur implements Serializable permits Bot {
                 }
                 Game.Board.moveSlot(from, to);
                 System.out.println(this.NAME + " move " + from + " to " + to);
-                return true;
+                slotPlace = to;
             } catch(NoHavingSlotException e) {
                 Game.logger("No slot owned !");
             } catch(SlotHavingOwnerException e) {
@@ -106,21 +124,21 @@ public sealed class Joueur implements Serializable permits Bot {
             Game.Board.setJoueurOnSlot(slot, this);
             System.out.println(this.NAME + " place on " + slot);
             this.addPiecePlaced();
+            this.onBoard++;
+            slotPlace = slot;
         }
-        return false;
-    }
 
-    /**
-     * Methode qui verifie la couleur du joueur
-     * @param myColor : la couleur du joueur
-     * @return boolean : si la couleur est celle du joueur
-     * @see Color
-     */
-    public boolean chooseIsYours(Color myColor){
-        if(this.color.equals(myColor)){
-            return true;
+        try {
+            if(Game.Board.sontAligne(slotPlace)) {
+                int ennemiSlot = chooseEnnemiSlot();
+                Game.Board.setJoueurOnSlot(ennemiSlot, null);
+                System.out.println(this.NAME + " remove " + ennemiSlot);
+            }
+        } catch(NoHavingSlotException e) {
+            Game.logger("No ennemi slot !");
         }
-        return false;
+
+        return slotPlace != -1;
     }
 
     /**
@@ -143,13 +161,13 @@ public sealed class Joueur implements Serializable permits Bot {
         return c >= 'a' && c <= 'x';
     }
 
-    /**
-     * Methode qui permet au joueur de choisir un slot qui lui appartient
-     * @return int : la position du slot choisi par le joueur
-     * @throws NoHavingSlotException : Le slot choisie n'est pas possédé par le joueur
-     */
-    public int chooseSlotOwned() throws NoHavingSlotException {
-        System.out.print("Choose a slot to move: ");
+    public int chooseEnnemiSlot() throws NoHavingSlotException {
+        List<Integer> ennemiSlot = Game.Board.allPositionPlayer(Game.isPlayer1Turn ? Game.p2 : Game.p1);
+        List<Character> possibility = new ArrayList<>();
+        for(Integer i : ennemiSlot) {
+            possibility.add((char) (i + 'a'));
+        }
+        System.out.print("Choose a ennemi to remove " + possibility.toString().replace("[", "(").replace("]", ")") + ": ");
         char c;
         do {
             c = Game.SCANNER.next().charAt(0);
@@ -157,6 +175,31 @@ public sealed class Joueur implements Serializable permits Bot {
             if(!chooseIsValid(c)) {
                 Game.logger("Invalid slot !");
             }
+            else if(!possibility.contains(c)) {
+                Game.logger("Slot not ennemi !");
+            }
+        } while(!chooseIsValid(c) && !possibility.contains(c));
+        return c - 'a';
+    }
+
+    /**
+     * Methode qui permet au joueur de choisir un slot qui lui appartient
+     * @return int : la position du slot choisi par le joueur
+     * @throws NoHavingSlotException : Le slot choisie n'est pas possédé par le joueur
+     */
+    public int chooseSlotOwned() throws NoHavingSlotException {
+        System.out.print("Choose a slot to move: ");
+        char c = '.';
+        do {
+            String s = Game.SCANNER.next();
+            if(!this.executeCommand(s)) {
+                c = s.charAt(0);
+                c = removeMaj(c);
+                if(!chooseIsValid(c)) {
+                    Game.logger("Invalid slot !");
+                }
+            }
+
         } while(!chooseIsValid(c));
         return c - 'a';
     }
@@ -174,8 +217,10 @@ public sealed class Joueur implements Serializable permits Bot {
         System.out.print("Choose a slot to move " + possibility.toString().replace("[", "(").replace("]", ")") + ": ");
         char c;
         do {
-            c = Game.SCANNER.next().charAt(0);
+            String s = Game.SCANNER.next();
+            c = s.charAt(0);
             c = removeMaj(c);
+            this.executeCommand(s);
             if(c == 'z') {
                 return -1;
             }
@@ -200,15 +245,17 @@ public sealed class Joueur implements Serializable permits Bot {
         System.out.print("Choose a slot to place " + possibility.toString().replace("[", "(").replace("]", ")") + ": ");
         char c;
         do {
-            c = Game.SCANNER.next().charAt(0);
+            String s = Game.SCANNER.next();
+            c = s.charAt(0);
             c = removeMaj(c);
+            this.executeCommand(s);
             if(!chooseIsValid(c)) {
                 Game.logger("Invalid slot !");
             }
             else if(!possibility.contains(c)) {
                 Game.logger("Slot not free !");
             }
-        } while(!chooseIsValid(c) && !possibility.contains(c));
+        } while(!chooseIsValid(c) || !possibility.contains(c));
         return c - 'a';
     }
     
@@ -217,12 +264,16 @@ public sealed class Joueur implements Serializable permits Bot {
         return  this.color + "X" + Color.ANSI_RESET;
     }
 
+    public String toStringName(){
+        return  this.color + this.NAME + Color.ANSI_RESET;
+    }
+
     /**
      *  Methode qui permet de savoir si le joueur a placé tous ses pions, si ils ne sont pas tous placé, on incrémente le nombre de pions placé
      */
     protected void addPiecePlaced(){
         if(!this.allPlaced) this.nbPiecePlaced++;
-        if(this.nbPiecePlaced == NB_MAX_PIECE) this.allPlaced = true;
+        if(this.nbPiecePlaced == Game.maxBilles) this.allPlaced = true;
     }
 
     /**
@@ -230,6 +281,14 @@ public sealed class Joueur implements Serializable permits Bot {
      */
     public int getNbPiecePlaced() {
         return nbPiecePlaced;
+    }
+
+    public boolean isDead(){
+        return Game.Board.allPositionPlayer(this).size() <= Game.minBilles && this.allPlaced;
+    }
+
+    public Color getColor() {
+        return color;
     }
 
     public static void main(String[] args) {
