@@ -25,11 +25,26 @@ public class Board implements Iterable<Slot>, Serializable {
      */
     private List<List<Slot>> slots;
 
+    /**
+     * int Height: la hauteur par defaut du plateau
+     */
     private static final int DEFAULT_HEIGHT = 3;
+
+    /**
+     * int Width: la largeur par defaut du plateau
+     */
     private static final int DEFAULT_WIDTH = 3;
     
+    /**
+     * Map&lt;Integer, List&lt;Integer&gt;&gt; : les possibilités de mouvement
+     */
     public static final Map<Integer, List<Integer>> POSSIBILITY = loadPossibility();
 
+    /**
+     * Constructeur de la classe Board avec les dimensions
+     * @param height : hauteur du plateau
+     * @param width : largeur du plateau
+     */
     public Board(int height, int width) {
         this.height = height;
         this.width = width;
@@ -37,10 +52,17 @@ public class Board implements Iterable<Slot>, Serializable {
         this.initBoard();
     }
 
+    /**
+     * Constructeur de la classe Board avec les dimensions par defaut
+     */
     public Board() {
         this(DEFAULT_HEIGHT, DEFAULT_WIDTH);
     }
 
+    /**
+     * Methode qui rempli le plateau de slots disponibles
+     * @see Slot
+     */
     private void fillBoard() {
         for(int i = 0; i < this.height * 2 + 1; i++) {
             List<Slot> row = new ArrayList<>();
@@ -51,6 +73,13 @@ public class Board implements Iterable<Slot>, Serializable {
         }
     }
 
+    /**
+     * Methode qui rempli le plateau de slots disponibles (partie central)
+     * @see Slot
+     * @see List
+     * @see ArrayList
+     * @see Board
+     */
     private void fillMiddle() {
         List<Slot> temps = new ArrayList<>();
         for(int i = 0; i < this.width; i++) {
@@ -59,6 +88,11 @@ public class Board implements Iterable<Slot>, Serializable {
         this.slots.get(this.height + 1).addAll(temps);
     }
 
+    /**
+     * Methode qui initialise le plateau
+     * @see Board#fillBoard
+     * @see Board#fillMiddle
+     */
     private void initBoard() {
         fillBoard();
         fillMiddle();

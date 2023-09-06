@@ -66,7 +66,7 @@ public final class Game implements Serializable {
 
     /**
      * @return boolean : true si la partie est sauvegardée / false sinon + exception
-     * @exception IOException
+     * @see IOException
      * @see FileOutputStream
      * @see ObjectOutputStream
      * @see LocalDate
@@ -93,8 +93,8 @@ public final class Game implements Serializable {
     /**
      * @param nameFile : le nom du fichier de la partie à charger
      * @return Game : la partie chargée
-     * @exception IOException
-     * @exception ClassNotFoundException : si la classe n'est pas trouvée
+     * @see IOException
+     * @see ClassNotFoundException
      */
     public static Game loadGame(String nameFile) {
         try {
@@ -112,6 +112,9 @@ public final class Game implements Serializable {
         return null;
     }
 
+    /**
+     * Methode qui lance la partie
+     */
     public static void startGame() {
         //TODO
     }

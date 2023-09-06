@@ -5,9 +5,24 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.io.BufferedReader;
 
+/**
+ * <p>La classe qui initialise des joueur</p>
+ * @author HOCINE CHEBOUT
+ * @author VALENTIN THUILLER
+ * @author LEIBOVICI EZECHIEL
+ * @author BARBEAU SIMON
+ * @author TOUMJI ABDALLAH
+ * @author BERRAKANE ADHAM
+ */
 public class Starting {
 
 
+    /**
+     * Point d'entrée du programme
+     * @param args : arguments du programme
+     * @throws InterruptedException : si le thread est interrompu
+     * @throws IOException : si il y a une erreur d'entrée/sortie
+     */
     public static void main(String[] args) throws InterruptedException, IOException {
         String fichier = "resources/Logo.txt";
         
