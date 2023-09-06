@@ -67,7 +67,6 @@ public enum Color implements Serializable {
 
     /**
      * Constructeur de l'énumération Color
-     * @param colorCode
      */
     Color(String colorCode){
         this.colorCode = colorCode;

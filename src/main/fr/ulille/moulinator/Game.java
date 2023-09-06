@@ -35,6 +35,7 @@ public final class Game implements Serializable {
     private Joueur p1_save, p2_save;
     private Board Board_save;
     private boolean isPlayer1Turn_save;
+    @Serial
     private static final long serialVersionUID = 1L;
     public static final Scanner SCANNER = new Scanner(System.in);
     public static int maxBilles = 9;
@@ -46,7 +47,7 @@ public final class Game implements Serializable {
 
     /**
      * Affiche les erreurs en rouge
-     * @param s
+     * @param s (String)    - Message to show
      * @see Color
      * @see String
      */
@@ -114,9 +115,9 @@ public final class Game implements Serializable {
     public static void startGame() {
         GameMode gameMode;
         switch(Game.gameType) {
-            case PLAYER_VS_PLAYER -> { gameMode = new OneVSOne(); }
-            case PLAYER_VS_BOT -> { gameMode = new OneVSBot(); }
-            case BOT_VS_BOT -> { gameMode = new BotVSBot(); }
+            case PLAYER_VS_PLAYER -> gameMode = new OneVSOne();
+            case PLAYER_VS_BOT -> gameMode = new OneVSBot();
+            case BOT_VS_BOT -> gameMode = new BotVSBot();
             default -> {
                 Game.logger("Error while starting game !");
                 return;
@@ -126,18 +127,7 @@ public final class Game implements Serializable {
     }
 
     public static void clearScreen() {
-        /*try {
-            final String os = System.getProperty("os.name");
-            if (os.contains("Windows")) {
-                Runtime.getRuntime().exec("cls");
-            }
-            else {
-                Runtime.getRuntime().exec("clear");
-            }
-        } catch (final Exception ignored) { }*/
-
         try {
-            // Exécute la commande système "clear" pour effacer le terminal
             Process process = new ProcessBuilder("clear").inheritIO().start();
             process.waitFor();
         } catch (IOException | InterruptedException e) {

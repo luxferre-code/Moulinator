@@ -1,8 +1,8 @@
 package fr.ulille.moulinator.panels;
 
-import fr.ulille.moulinator.enums.Color;
 import fr.ulille.moulinator.Game;
 import fr.ulille.moulinator.Joueur;
+import fr.ulille.moulinator.enums.Color;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +20,7 @@ public class CustomPlayer {
         List<Integer> colors = new ArrayList<>();
         for(Color c : Color.values()) {
             if(!c.isUsed()) {
-                System.out.println(c.ordinal() + " -> " + c.toString() + c.getColor() + Color.ANSI_WHITE);
+                System.out.println(c.ordinal() + " -> " + c + c.getColor() + Color.ANSI_WHITE);
                 colors.add(c.ordinal());
             }
         }

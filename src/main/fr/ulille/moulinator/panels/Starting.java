@@ -2,10 +2,10 @@ package fr.ulille.moulinator.panels;
 
 import fr.ulille.moulinator.gamemode.Demo;
 
+import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.io.BufferedReader;
 
 /**
  * <p>La classe qui initialise des joueur</p>
@@ -46,11 +46,11 @@ public class Starting {
                 }
             }
             for (int i = 0; i<taille; i =i + 1){
-                for (int j = 0; j< texte.size(); j = j+1){
-                    if (texte.get(j).length() >= i){
-                        System.out.println(texte.get(j).substring(0, i));
+                for(String s : texte) {
+                    if(s.length() >= i) {
+                        System.out.println(s.substring(0, i));
                     } else {
-                        System.out.println(texte.get(j));
+                        System.out.println(s);
                     }
                 }
                 Thread.sleep(50);

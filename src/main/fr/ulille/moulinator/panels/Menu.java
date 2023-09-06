@@ -3,8 +3,11 @@ package fr.ulille.moulinator.panels;
 import fr.ulille.moulinator.Game;
 import fr.ulille.moulinator.enums.GameType;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
-import java.io.*;
 /**
  * <p>La classe qui initialise le menu</p>
  * @author HOCINE CHEBOUT
@@ -17,11 +20,11 @@ import java.io.*;
 
 public class Menu {
 
-    private static int choose(int min, int max) throws InterruptedException {
+    private static int choose() throws InterruptedException {
         Thread.sleep(500);
         Scanner sc = Game.SCANNER;
         int choice = 0;
-        while(choice < min || choice > max) {
+        while(choice < 1 || choice > 7) {
             try {
                 choice = Integer.parseInt(sc.nextLine());
             } catch(NumberFormatException ignored) {}
@@ -31,7 +34,6 @@ public class Menu {
 
     /**
      * Menu du jeu
-     * @throws InterruptedException
      */
     public static void execute() throws InterruptedException {
         try(BufferedReader br = new BufferedReader(new FileReader(new File("resources/Logo.txt")))) {
@@ -43,16 +45,17 @@ public class Menu {
             Game.logger("logo not found !");
         }
 
-        System.out.println("~ Welcome to the mill game ~" +
-                           "\n1. Player VS Player" +
-                           "\n2. Player VS Bot" +
-                           "\n3. Bot VS Bot" +
-                           "\n4. Game rules" +
-                           "\n5. Load save" +
-                           "\n6. Settings" +
-                           "\n7. Quit");
+        System.out.println("""
+                ~ Welcome to the mill game ~
+                1. Player VS Player
+                2. Player VS Bot
+                3. Bot VS Bot
+                4. Game rules
+                5. Load save
+                6. Settings
+                7. Quit""");
 
-        int choice = choose(1, 7);
+        int choice = choose();
         switch(choice) {
             case 1 -> {
                 Game.gameType = GameType.PLAYER_VS_PLAYER;

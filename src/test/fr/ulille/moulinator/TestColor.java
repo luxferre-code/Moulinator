@@ -1,8 +1,7 @@
 package fr.ulille.moulinator;
 
 import fr.ulille.moulinator.enums.Color;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -23,25 +22,22 @@ public class TestColor {
     }
     @Test
     public void testGetColor(){
-        assertEquals("RED",colorCodeRed.getColor());
-        assertEquals("BLACK",colorCodeBlack.getColor());
-        assertEquals("GREEN",colorCodeGreen.getColor());
-        assertEquals("YELLOW",colorCodeYellow.getColor());
-        assertEquals("BLUE",colorCodeBlue.getColor());
-        assertNotEquals("RED",colorCodeBlack.getColor());
+        Assertions.assertEquals("RED",colorCodeRed.getColor());
+        Assertions.assertEquals("BLACK",colorCodeBlack.getColor());
+        Assertions.assertEquals("GREEN",colorCodeGreen.getColor());
+        Assertions.assertEquals("YELLOW",colorCodeYellow.getColor());
+        Assertions.assertEquals("BLUE",colorCodeBlue.getColor());
+        Assertions.assertNotEquals("RED",colorCodeBlack.getColor());
     }
 
     @Test
     public void testShowColor(){
-        assertEquals("\u001B[31mThis text is RED\u001B[0m",colorCodeRed.showColor());
-        assertEquals("\u001B[30mThis text is BLACK\u001B[0m",colorCodeBlack.showColor());
-        assertEquals("\u001B[32mThis text is GREEN\u001B[0m",colorCodeGreen.showColor());
-        assertEquals("\u001B[33mThis text is YELLOW\u001B[0m",colorCodeYellow.showColor());
-        assertEquals("\u001B[34mThis text is BLUE\u001B[0m",colorCodeBlue.showColor());
-        assertNotEquals("\u001B[31mThis text is RED\u001B[0m",colorCodeBlack.showColor());
+        Assertions.assertEquals("\u001B[31mThis text is RED\u001B[0m",colorCodeRed.showColor());
+        Assertions.assertEquals("\u001B[30mThis text is BLACK\u001B[0m",colorCodeBlack.showColor());
+        Assertions.assertEquals("\u001B[32mThis text is GREEN\u001B[0m",colorCodeGreen.showColor());
+        Assertions.assertEquals("\u001B[33mThis text is YELLOW\u001B[0m",colorCodeYellow.showColor());
+        Assertions.assertEquals("\u001B[34mThis text is BLUE\u001B[0m",colorCodeBlue.showColor());
+        Assertions.assertNotEquals("\u001B[31mThis text is RED\u001B[0m",colorCodeBlack.showColor());
 
     }
-
-
-    
 }

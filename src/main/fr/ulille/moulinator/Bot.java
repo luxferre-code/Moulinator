@@ -39,7 +39,6 @@ public final class Bot extends Joueur {
     }
 
     /**
-     * @param slot
      * @return int : la position du slot sur le plateau où le bot veux déplacer son pion
      * @throws SlotHavingOwnerException : Le slot choisie est déjà possédé par un joueur ou est déjà occupé
      */

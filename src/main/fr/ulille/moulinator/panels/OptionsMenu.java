@@ -1,16 +1,9 @@
 package fr.ulille.moulinator.panels;
 
-import fr.ulille.moulinator.enums.Color;
 import fr.ulille.moulinator.Game;
+import fr.ulille.moulinator.enums.Color;
 
 public final class OptionsMenu {
-
-    /*
-     * Nombre maximum de billes par Joueur
-     * Nombre minimum avant defaite
-     * Debug mode (affichage de toutes les actions)
-     */
-
     public static void execute() {
         String base = Color.ANSI_GREEN + "~ Config Menu ~\n" +
                             Color.ANSI_BLUE + "1 - Max slots for user (value: " + Color.ANSI_YELLOW + Game.maxBilles + Color.ANSI_BLUE + ")\n" +
@@ -36,7 +29,7 @@ public final class OptionsMenu {
     }
 
     public static int newValue(int min, int max) {
-        int newV = -1;
+        int newV;
         do {
             System.out.print(Color.ANSI_PURPLE + "New value (between " + min + " and " + max + "): ");
             newV = Game.SCANNER.nextInt();
@@ -52,16 +45,4 @@ public final class OptionsMenu {
             else if(s.equals("no")) return false;
         }
     }
-
-    /*
-     * ~ Config menu ~
-     * 1 - Max slots for user (value: X)
-     * 2 - Min slots for user before death (value: X)
-     * 3 - Debug mod (value: X)
-     */
-
-    public static void main(String[] args) {
-        OptionsMenu.execute();
-    }
-
 }

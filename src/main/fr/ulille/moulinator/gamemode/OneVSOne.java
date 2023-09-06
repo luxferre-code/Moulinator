@@ -1,10 +1,10 @@
 package fr.ulille.moulinator.gamemode;
 
-import java.util.Scanner;
-
-import fr.ulille.moulinator.panels.CustomPlayer;
 import fr.ulille.moulinator.Game;
 import fr.ulille.moulinator.Joueur;
+import fr.ulille.moulinator.panels.CustomPlayer;
+
+import java.util.Scanner;
 
 public class OneVSOne implements GameMode{
 

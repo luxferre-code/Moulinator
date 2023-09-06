@@ -23,7 +23,7 @@ public class Board implements Iterable<Slot>, Serializable {
     /**
      * List&lt;List&lt;Slot&gt;&gt; : la liste des slots du plateau
      */
-    private List<List<Slot>> slots;
+    private final List<List<Slot>> slots;
 
     /**
      * int Height: la hauteur par defaut du plateau
@@ -99,50 +99,6 @@ public class Board implements Iterable<Slot>, Serializable {
         fillMiddle();
     }
 
-    public Slot getSlot(int x, int y) {
-        return this.slots.get(y).get(x);
-    }
-
-    public List<Slot> getRow(int y) {
-        return this.slots.get(y);
-    }
-
-    private Slot getSlotMiddleLine(int x, boolean isLeft) {
-        if(isLeft) { return this.getSlot(x, height / 2); }
-        return this.getSlot(width / 2 + x, height / 2);
-    }
-
-    /**
-     * @param x
-     * @return List&lt;Slot&gt; : la colonne x
-     * @see Slot
-     * @see List
-     */
-    public List<Slot> getColumn(int x) {
-        List<Slot> column = new ArrayList<>();
-        for(int i = 0; i < this.height; i++) {
-            if(i == height / 2) { column.add(this.getSlotMiddleLine(x, x < width / 2)); }
-            else { column.add(this.getSlot(x, i)); }
-        }
-        return column;
-    }
-
-    /**
-     * @param ligne
-     * @param j
-     * @return
-     * @see Joueur
-     * @see Slot
-     * @see List
-     */
-    public boolean checkLine(int ligne, Joueur j) {
-        List<Slot> row = this.getRow(ligne);
-        for(Slot s : row) {
-            if(!s.getOwner().equals(j)) { return false; }
-        }
-        return true;
-    }
-
     @Override
     public String toString() {
         // Chargement du fichier dans resources/board
@@ -174,10 +130,6 @@ public class Board implements Iterable<Slot>, Serializable {
         for(List<Slot> row : this.slots) {
             slots.addAll(row);
         }
-        return slots;
-    }
-
-    public List<List<Slot>> getSlots() {
         return slots;
     }
 
@@ -259,12 +211,14 @@ public class Board implements Iterable<Slot>, Serializable {
         //Ligne Vertical
         for(List<Integer> line : COLUMN_CHECK) {
             if(line.contains(slot)) {
-                List<Integer> temps = new ArrayList<>();
-                temps.addAll(line);
+                List<Integer> temps = new ArrayList<>(line);
                 temps.remove(Integer.valueOf(slot));
                 boolean good = true;
                 for(int i : temps) {
-                    if(!j.equals(map.get(i).getOwner())) good = false;
+                    if(!j.equals(map.get(i).getOwner())) {
+                        good = false;
+                        break;
+                    }
                 }
                 return good;
             }
@@ -286,9 +240,5 @@ public class Board implements Iterable<Slot>, Serializable {
             }
         } catch(Exception ignored) {}
         return t;
-    }
-
-    public Joueur getJoueurOnSlot(int i) {
-        return this.concat2DList().get(i).getOwner();
     }
 }

@@ -1,16 +1,9 @@
 package fr.ulille.moulinator;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
-
+import fr.ulille.moulinator.enums.Color;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import fr.ulille.moulinator.Board;
-import fr.ulille.moulinator.enums.Color;
-import fr.ulille.moulinator.Joueur;
 
 public class TestJoueur {
     Joueur h;
@@ -44,44 +37,44 @@ public class TestJoueur {
 
     @Test
     public void testGetName(){
-        assertEquals("Hocine",h.getName());
-        assertEquals("Valentin",v.getName());
-        assertEquals("Adham",a.getName());
-        assertNotEquals("Hocine",v.getName());
+        Assertions.assertEquals("Hocine",h.getName());
+        Assertions.assertEquals("Valentin",v.getName());
+        Assertions.assertEquals("Adham",a.getName());
+        Assertions.assertNotEquals("Hocine",v.getName());
     }
 
     @Test
     public void testChooseIsValid(){
-        assertTrue(h.chooseIsValid('a'));
-        assertTrue(v.chooseIsValid('b'));
-        assertTrue(a.chooseIsValid('c'));
-        assertTrue(h.chooseIsValid('d'));
-        assertTrue(v.chooseIsValid('e'));
-        assertTrue(a.chooseIsValid('f'));
-        assertTrue(h.chooseIsValid('g'));
-        assertTrue(v.chooseIsValid('h'));
-        assertTrue(a.chooseIsValid('i'));
-        assertTrue(h.chooseIsValid('j'));
-        assertTrue(v.chooseIsValid('k'));
-        assertTrue(a.chooseIsValid('l'));
-        assertTrue(h.chooseIsValid('m'));
-        assertTrue(v.chooseIsValid('n'));
-        assertTrue(a.chooseIsValid('o'));
-        assertTrue(h.chooseIsValid('p'));
-        assertTrue(v.chooseIsValid('q'));
-        assertTrue(a.chooseIsValid('r'));
-        assertTrue(h.chooseIsValid('s'));
-        assertTrue(v.chooseIsValid('t'));
-        assertTrue(a.chooseIsValid('u'));
-        assertTrue(h.chooseIsValid('v'));
-        assertTrue(v.chooseIsValid('w'));
-        assertTrue(a.chooseIsValid('x'));
-        assertFalse(h.chooseIsValid('y'));
-        assertFalse(v.chooseIsValid('z'));
-        assertTrue(v.chooseIsValid('A'));
-        assertTrue(a.chooseIsValid('B'));
-        assertTrue(a.chooseIsValid('E'));
-        assertFalse(v.chooseIsValid('Z'));
+        Assertions.assertTrue(h.chooseIsValid('a'));
+        Assertions.assertTrue(v.chooseIsValid('b'));
+        Assertions.assertTrue(a.chooseIsValid('c'));
+        Assertions.assertTrue(h.chooseIsValid('d'));
+        Assertions.assertTrue(v.chooseIsValid('e'));
+        Assertions.assertTrue(a.chooseIsValid('f'));
+        Assertions.assertTrue(h.chooseIsValid('g'));
+        Assertions.assertTrue(v.chooseIsValid('h'));
+        Assertions.assertTrue(a.chooseIsValid('i'));
+        Assertions.assertTrue(h.chooseIsValid('j'));
+        Assertions.assertTrue(v.chooseIsValid('k'));
+        Assertions.assertTrue(a.chooseIsValid('l'));
+        Assertions.assertTrue(h.chooseIsValid('m'));
+        Assertions.assertTrue(v.chooseIsValid('n'));
+        Assertions.assertTrue(a.chooseIsValid('o'));
+        Assertions.assertTrue(h.chooseIsValid('p'));
+        Assertions.assertTrue(v.chooseIsValid('q'));
+        Assertions.assertTrue(a.chooseIsValid('r'));
+        Assertions.assertTrue(h.chooseIsValid('s'));
+        Assertions.assertTrue(v.chooseIsValid('t'));
+        Assertions.assertTrue(a.chooseIsValid('u'));
+        Assertions.assertTrue(h.chooseIsValid('v'));
+        Assertions.assertTrue(v.chooseIsValid('w'));
+        Assertions.assertTrue(a.chooseIsValid('x'));
+        Assertions.assertFalse(h.chooseIsValid('y'));
+        Assertions.assertFalse(v.chooseIsValid('z'));
+        Assertions.assertTrue(v.chooseIsValid('A'));
+        Assertions.assertTrue(a.chooseIsValid('B'));
+        Assertions.assertTrue(a.chooseIsValid('E'));
+        Assertions.assertFalse(v.chooseIsValid('Z'));
     }
     
 }

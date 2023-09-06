@@ -30,20 +30,6 @@ public sealed class Joueur implements Serializable permits Bot {
     protected int nbPiecePlaced = 0;
 
     /**
-     * Constructeur de la classe Joueur completement défini
-     * @param name : nom du joueur
-     * @param color : couleur du joueur
-     * @param onBoard : nombre de pion sur le plateau
-     * @param allPlaced : si le joueur a placé tous ses pions
-     */
-    public Joueur(String name, Color color, int onBoard, boolean allPlaced){
-        this.NAME = name;
-        this.onBoard = onBoard;
-        this.allPlaced = allPlaced;
-        this.color = color;
-    }
-
-    /**
      * Constructeur de la classe Joueur avec le nom et la couleur
      * @param name : nom du joueur
      * @param color : couleur du joueur
@@ -61,15 +47,6 @@ public sealed class Joueur implements Serializable permits Bot {
         this.NAME = name;
         this.color = BASE_COLOR;
     }
-
-    /**
-     * Constructeur de la classe Joueur avec la couleur et le nom par defaut
-     */
-    public Joueur(){
-        this.NAME = "undefined";
-        this.color = BASE_COLOR;
-    }
-
 
     /**
      * @return String : le nom du joueur
@@ -100,8 +77,8 @@ public sealed class Joueur implements Serializable permits Bot {
                     Game.Board = new Board();
                     Color.reset();
                     Menu.execute();
-                } catch(Exception ignored) {
-                    if(Game.debugMod) ignored.printStackTrace();
+                } catch(Exception e) {
+                    if(Game.debugMod) e.printStackTrace();
                  }
                 System.exit(0);
             }
@@ -302,13 +279,6 @@ public sealed class Joueur implements Serializable permits Bot {
     protected void addPiecePlaced(){
         if(!this.allPlaced) this.nbPiecePlaced++;
         if(this.nbPiecePlaced == Game.maxBilles) this.allPlaced = true;
-    }
-
-    /**
-     * @return int : le nombre de pions placé
-     */
-    public int getNbPiecePlaced() {
-        return nbPiecePlaced;
     }
 
     public boolean isDead(){
