@@ -3,6 +3,15 @@ package fr.ulille.moulinator;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * <p>La classe qui initialise des emplacement/pions</p>
+ * @author HOCINE CHEBOUT
+ * @author VALENTIN THUILLER
+ * @author LEIBOVICI EZECHIEL
+ * @author BARBEAU SIMON
+ * @author TOUMJI ABDALLAH
+ * @author BERRAKANE ADHAM
+ */
 public class Slot implements Serializable {
 
     /**
@@ -22,7 +31,7 @@ public class Slot implements Serializable {
 
     /**
      * Constructeur de la classe Slot avec le joueur
-     * @param owner
+     * @param owner : le joueur qui possede le slot
      */
     public Slot(Joueur owner) {
         this.owner = owner;
@@ -58,6 +67,11 @@ public class Slot implements Serializable {
         return exOwner;
     }
 
+    /**
+     * @param newOwner : le nouveau proprietaire du slot
+     * @return boolean : true si le changement de proprietaire a bien eu lieu sinon false
+     * @see Joueur
+     */
     public boolean changeOwner(Joueur newOwner) {
         if(this.owner == null) {
             this.owner = newOwner;
@@ -73,7 +87,7 @@ public class Slot implements Serializable {
 
     /**
      * Methode qui gere la libération/occupation d'un slot lors d'un deplacement
-     * @param s
+     * @param s : le slot à deplacer
      * @return boolean : true si la methode à bien gerer la libération/occupation du slot sinon false
      */
     public boolean moveSlot(Slot s) {

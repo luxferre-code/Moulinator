@@ -1,4 +1,4 @@
-package fr.ulille.moulinator;
+package test.fr.ulille.moulinator;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -7,6 +7,9 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import fr.ulille.moulinator.Board;
+import fr.ulille.moulinator.Joueur;
 
 public class TestJoueur {
     Joueur h;
