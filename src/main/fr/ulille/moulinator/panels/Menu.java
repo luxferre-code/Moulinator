@@ -47,10 +47,10 @@ public class Menu {
         }
 
         System.out.println("""
-                ~ Welcome to the mill game ~
-                1. Player VS Player
-                2. Player VS Bot
-                3. Bot VS Bot
+                ~ Welcome to the Nine Men's Morris ~
+                1. Player1 VS Player2
+                2. Player1 VS Bot1
+                3. Bot1 VS Bot2
                 4. Game rules
                 5. Load save
                 6. Settings
