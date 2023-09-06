@@ -123,7 +123,7 @@ public final class Game implements Serializable {
     }
 
     public static void clearScreen() {
-        try {
+        /*try {
             final String os = System.getProperty("os.name");
             if (os.contains("Windows")) {
                 Runtime.getRuntime().exec("cls");
@@ -131,7 +131,15 @@ public final class Game implements Serializable {
             else {
                 Runtime.getRuntime().exec("clear");
             }
-        } catch (final Exception ignored) { }
+        } catch (final Exception ignored) { }*/
+
+        try {
+            // Exécute la commande système "clear" pour effacer le terminal
+            Process process = new ProcessBuilder("clear").inheritIO().start();
+            process.waitFor();
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
