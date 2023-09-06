@@ -1,5 +1,15 @@
 package fr.ulille.moulinator;
 
+
+/**
+ * <p>La classe qui initialise les modes de jeu</p>
+ * @author HOCINE CHEBOUT
+ * @author VALENTIN THUILLER
+ * @author LEIBOVICI EZECHIEL
+ * @author BARBEAU SIMON
+ * @author TOUMJI ABDALLAH
+ * @author BERRAKANE ADHAM
+ */
 public enum GameType {
 
     PLAYER_VS_PLAYER("Joueur contre Joueur", true, true),

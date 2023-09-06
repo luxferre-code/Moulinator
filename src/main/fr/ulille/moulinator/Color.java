@@ -11,7 +11,6 @@ import java.io.Serializable;
  * @author TOUMJI ABDALLAH
  * @author BERRAKANE ADHAM
  */
-
 public enum Color implements Serializable {
     /**
      * La couleur qui sera considérer comme par defaut
@@ -108,6 +107,12 @@ public enum Color implements Serializable {
      */
     public void setUsed(boolean used) {
         isUsed = used;
+    }
+
+    public static void reset() {
+        for(Color c : Color.values()) {
+            c.setUsed(false);
+        }
     }
 
     public static void main(String[] args) {

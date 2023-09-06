@@ -15,13 +15,37 @@ import java.util.*;
  */
 public class Board implements Iterable<Slot>, Serializable {
 
+    /**
+     * int : les dimensions du plateau
+     */
     public int height, width;
+
+    /**
+     * List&lt;List&lt;Slot&gt;&gt; : la liste des slots du plateau
+     */
     private List<List<Slot>> slots;
+
+    /**
+     * int Height: la hauteur par defaut du plateau
+     */
     private static final int DEFAULT_HEIGHT = 3;
+
+    /**
+     * int Width: la largeur par defaut du plateau
+     */
     private static final int DEFAULT_WIDTH = 3;
+
+    /**
+     * Map&lt;Integer, List&lt;Integer&gt;&gt; : les possibilités de mouvement
+     */
     public static final Map<Integer, List<Integer>> POSSIBILITY = loadPossibility();
     private static final List<List<Integer>> COLUMN_CHECK = loadColumnList();
 
+    /**
+     * Constructeur de la classe Board avec les dimensions
+     * @param height : hauteur du plateau
+     * @param width : largeur du plateau
+     */
     public Board(int height, int width) {
         this.height = height;
         this.width = width;
@@ -29,10 +53,17 @@ public class Board implements Iterable<Slot>, Serializable {
         this.initBoard();
     }
 
+    /**
+     * Constructeur de la classe Board avec les dimensions par defaut
+     */
     public Board() {
         this(DEFAULT_HEIGHT, DEFAULT_WIDTH);
     }
 
+    /**
+     * Methode qui rempli le plateau de slots disponibles
+     * @see Slot
+     */
     private void fillBoard() {
         for(int i = 0; i < this.height * 2 + 1; i++) {
             List<Slot> row = new ArrayList<>();
@@ -43,6 +74,13 @@ public class Board implements Iterable<Slot>, Serializable {
         }
     }
 
+    /**
+     * Methode qui rempli le plateau de slots disponibles (partie central)
+     * @see Slot
+     * @see List
+     * @see ArrayList
+     * @see Board
+     */
     private void fillMiddle() {
         List<Slot> temps = new ArrayList<>();
         for(int i = 0; i < this.width; i++) {
@@ -51,6 +89,11 @@ public class Board implements Iterable<Slot>, Serializable {
         this.slots.get(this.height + 1).addAll(temps);
     }
 
+    /**
+     * Methode qui initialise le plateau
+     * @see Board#fillBoard
+     * @see Board#fillMiddle
+     */
     private void initBoard() {
         fillBoard();
         fillMiddle();
@@ -69,6 +112,12 @@ public class Board implements Iterable<Slot>, Serializable {
         return this.getSlot(width / 2 + x, height / 2);
     }
 
+    /**
+     * @param x
+     * @return List&lt;Slot&gt; : la colonne x
+     * @see Slot
+     * @see List
+     */
     public List<Slot> getColumn(int x) {
         List<Slot> column = new ArrayList<>();
         for(int i = 0; i < this.height; i++) {
@@ -78,6 +127,14 @@ public class Board implements Iterable<Slot>, Serializable {
         return column;
     }
 
+    /**
+     * @param ligne
+     * @param j
+     * @return
+     * @see Joueur
+     * @see Slot
+     * @see List
+     */
     public boolean checkLine(int ligne, Joueur j) {
         List<Slot> row = this.getRow(ligne);
         for(Slot s : row) {
@@ -175,6 +232,10 @@ public class Board implements Iterable<Slot>, Serializable {
 
     public void setJoueurOnSlot(int slot, Joueur j) {
         this.concat2DList().get(slot).changeOwner(j);
+        j.onBoard = j.onBoard + 1;
+        if(j.onBoard ==6) { 
+            j.allPlaced = true; 
+        }
     }
 
     public boolean sontAligne(int slot) {

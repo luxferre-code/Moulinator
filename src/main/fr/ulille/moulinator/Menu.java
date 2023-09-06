@@ -2,6 +2,15 @@ package fr.ulille.moulinator;
 
 import java.util.Scanner;
 import java.io.*;
+/**
+ * <p>La classe qui initialise le menu</p>
+ * @author HOCINE CHEBOUT
+ * @author VALENTIN THUILLER
+ * @author LEIBOVICI EZECHIEL
+ * @author BARBEAU SIMON
+ * @author TOUMJI ABDALLAH
+ * @author BERRAKANE ADHAM
+ */
 
 public class Menu {
 
@@ -17,6 +26,10 @@ public class Menu {
         return choice;
     }
 
+    /**
+     * Menu du jeu
+     * @throws InterruptedException
+     */
     public static void execute() throws InterruptedException {
         try(BufferedReader br = new BufferedReader(new FileReader(new File("resources/Logo.txt")))) {
             String line;

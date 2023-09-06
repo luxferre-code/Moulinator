@@ -16,7 +16,7 @@ public class CustomPlayer {
         List<Integer> colors = new ArrayList<>();
         for(Color c : Color.values()) {
             if(!c.isUsed()) {
-                System.out.println(c.ordinal() + " -> " + c.toString() + c.getColor() + Color.ANSI_RESET);
+                System.out.println(c.ordinal() + " -> " + c.toString() + c.getColor() + Color.ANSI_WHITE);
                 colors.add(c.ordinal());
             }
         }

@@ -8,12 +8,10 @@ import fr.ulille.moulinator.gamemode.OneVSOne;
 import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Map;
 import java.util.Scanner;
 
-
 /**
- * <p>La classe qui initialise des joueur</p>
+ * <p>La classe qui initialise le jeu</p>
  * @author HOCINE CHEBOUT
  * @author VALENTIN THUILLER
  * @author LEIBOVICI EZECHIEL
@@ -21,45 +19,34 @@ import java.util.Scanner;
  * @author TOUMJI ABDALLAH
  * @author BERRAKANE ADHAM
  */
-
 public final class Game implements Serializable {
     
     /**
-     * Joueur p1,p2 : les deux joueurs de la partie
+     * Joueur p1, p2 : les joueurs de la partie
      */
     public static Joueur p1, p2;
-
-    /**
-     * Board Board : le plateau de la partie
-     */
     public static Board Board = new Board();
-
-    /**
-     * GameType gameType : le type de la partie
-     */
     public static GameType gameType;
     private GameType gameType_save;
     public static boolean isPlayer1Turn = true;
-
-    /**
-     * Joueur p1_save,p2_save : les deux sauvegarde de la partie
-     */
     private Joueur p1_save, p2_save;
-
-    /**
-     * Board Board_save : la sauvegarde du plateau de la partie
-     */
     private Board Board_save;
+    private boolean isPlayer1Turn_save;
+    private static final long serialVersionUID = 1L;
+    public static final Scanner SCANNER = new Scanner(System.in);
+    public static int maxBilles = 9;
+    public static int minBilles = 2;
+    public static boolean debugMod = false;
+    private boolean debugMod_save;
+    private int maxBilles_save, minBilles_save;
+
 
     /**
-     * boolean isPlayer1Turn_save : la sauvegarde du tour du joueur 1
+     * Affiche les erreurs en rouge
+     * @param s
+     * @see Color
+     * @see String
      */
-    private boolean isPlayer1Turn_save;
-
-
-    private static final long serialVersionUID = 1L;
-
-    public static final Scanner SCANNER = new Scanner(System.in);
     public static void logger(String s) {
         System.out.println(Color.ANSI_RED + s + Color.ANSI_RESET);
     }
@@ -69,8 +56,12 @@ public final class Game implements Serializable {
     }
 
     /**
-     * Methode qui applique la sauvegarde de la partie
-     * @return bollean : si la partie est sauvegardée
+     * @return boolean : true si la partie est sauvegardée / false sinon + exception
+     * @see IOException
+     * @see FileOutputStream
+     * @see ObjectOutputStream
+     * @see LocalDate
+     * @see DateTimeFormatter
      */
     public boolean saveGame() {
         try {
@@ -94,7 +85,7 @@ public final class Game implements Serializable {
         }
     }
 
-    public static Game loadGame(String nameFile) {
+    public static Game loadGame() {
         try {
             FileInputStream fileIn = new FileInputStream("resources/save.ser");
             ObjectInputStream in = new ObjectInputStream(fileIn);
@@ -114,6 +105,9 @@ public final class Game implements Serializable {
         return null;
     }
 
+    /**
+     * Methode qui lance la partie
+     */
     public static void startGame() {
         GameMode gameMode;
         switch(Game.gameType) {
