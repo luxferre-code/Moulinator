@@ -92,6 +92,7 @@ public sealed class Joueur implements Serializable permits Bot {
                     Game.p1 = null;
                     Game.p2 = null;
                     Game.Board = new Board();
+                    Color.reset();
                     Menu.execute();
                 } catch(Exception ignored) {
                     if(Game.debugMod) ignored.printStackTrace();
@@ -113,7 +114,7 @@ public sealed class Joueur implements Serializable permits Bot {
                 }
                 Game.Board.moveSlot(from, to);
                 if(Game.debugMod){
-                    System.out.println(this.NAME + " move " + from + " to " + to);
+                    Game.info(this.NAME + " move " + from + " to " + to);
                 }
                 slotPlace = to;
             } catch(NoHavingSlotException e) {
@@ -128,7 +129,7 @@ public sealed class Joueur implements Serializable permits Bot {
             int slot = chooseFreeSlot();
             Game.Board.setJoueurOnSlot(slot, this);
             if(Game.debugMod){
-                System.out.println(this.NAME + " place on " + slot);
+                Game.info(this.NAME + " place on " + slot);
             }
             this.addPiecePlaced();
             this.onBoard++;
@@ -140,7 +141,7 @@ public sealed class Joueur implements Serializable permits Bot {
                 int ennemiSlot = chooseEnnemiSlot();
                 Game.Board.setJoueurOnSlot(ennemiSlot, null);
                 if(Game.debugMod){
-                    System.out.println(this.NAME + " remove " + ennemiSlot);
+                    Game.info(this.NAME + " remove " + ennemiSlot);
                 }
             }
         } catch(NoHavingSlotException e) {
@@ -314,10 +315,10 @@ public sealed class Joueur implements Serializable permits Bot {
 
     public static void main(String[] args) {
         Joueur j = CustomPlayer.makePlayer();
-        System.out.println(j);
-        System.out.println(Game.Board);
+        Game.info(j.toString());
+        Game.info(Game.Board.toString());
         j.choose();
-        System.out.println(Game.Board);
+        Game.info(Game.Board.toString());
     }
 
 }

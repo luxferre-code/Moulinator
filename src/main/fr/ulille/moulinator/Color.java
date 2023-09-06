@@ -109,6 +109,12 @@ public enum Color implements Serializable {
         isUsed = used;
     }
 
+    public static void reset() {
+        for(Color c : Color.values()) {
+            c.setUsed(false);
+        }
+    }
+
     public static void main(String[] args) {
         Color colorCode = Color.ANSI_PURPLE;
         System.out.println(colorCode.showColor());

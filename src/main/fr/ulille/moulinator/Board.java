@@ -224,13 +224,6 @@ public class Board implements Iterable<Slot>, Serializable {
         return t;
     }
 
-    public static void main(String[] args) {
-        System.out.println("Hello world!");
-        Board b = new Board();
-        b.initBoard();
-        System.out.println(b);
-    }
-
     public void moveSlot(int first, int to) {
         Slot s1 = this.concat2DList().get(first);
         Slot s2 = this.concat2DList().get(to);
