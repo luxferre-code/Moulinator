@@ -12,7 +12,7 @@ Nous avons fait:
 ### Ce que nous allons faire durant le prochain sprint
 - US-011B : J1 vs Bot
 - US-011C : Bot vs Bot
-- US-017 : Debug mode
+- US-014 : Programme principal
 
 ## Rétrospective
 
