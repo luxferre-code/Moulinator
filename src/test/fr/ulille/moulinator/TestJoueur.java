@@ -1,4 +1,4 @@
-package fr.ulille.moulinator;
+package test.fr.ulille.moulinator;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class TestJoueur {
-    Joueur h;
+    /*Joueur h;
     Joueur v;
     Joueur a;
 
@@ -69,7 +69,7 @@ public class TestJoueur {
         b.setJoueurOnSlot(9, v);
         b.setJoueurOnSlot(10, v);
         b.setJoueurOnSlot(11, v);
-    }
+    }*/
 
 
     

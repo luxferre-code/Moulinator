@@ -20,6 +20,7 @@ public class Board implements Iterable<Slot>, Serializable {
     private static final int DEFAULT_HEIGHT = 3;
     private static final int DEFAULT_WIDTH = 3;
     public static final Map<Integer, List<Integer>> POSSIBILITY = loadPossibility();
+    private static final List<List<Integer>> COLUMN_CHECK = loadColumnList();
 
     public Board(int height, int width) {
         this.height = height;
@@ -66,11 +67,6 @@ public class Board implements Iterable<Slot>, Serializable {
     private Slot getSlotMiddleLine(int x, boolean isLeft) {
         if(isLeft) { return this.getSlot(x, height / 2); }
         return this.getSlot(width / 2 + x, height / 2);
-    }
-
-    private Slot getSlotMiddleColumn(int y, boolean isTop) {
-        if(isTop) { return this.getSlot(width / 2, y); }
-        return this.getSlot(width / 2, height / 2 + y);
     }
 
     public List<Slot> getColumn(int x) {
@@ -171,13 +167,6 @@ public class Board implements Iterable<Slot>, Serializable {
         return t;
     }
 
-    public static void main(String[] args) {
-        System.out.println("Hello world!");
-        Board b = new Board();
-        b.initBoard();
-        System.out.println(b);
-    }
-
     public void moveSlot(int first, int to) {
         Slot s1 = this.concat2DList().get(first);
         Slot s2 = this.concat2DList().get(to);
@@ -186,73 +175,55 @@ public class Board implements Iterable<Slot>, Serializable {
 
     public void setJoueurOnSlot(int slot, Joueur j) {
         this.concat2DList().get(slot).changeOwner(j);
-        j.onBoard = j.onBoard + 1;
-        if(j.onBoard ==6) { 
-            j.allPlaced = true; 
-        }
     }
 
-    public boolean sontAligne(Slot s){
-        boolean renvoi=false;
-        int x=s.getx();
-        if(this.slots.get(x).size()==height){
-            renvoi = true;
-            for(int j=0; j<height;j++){
-                if(!this.slots.get(x).get(j).getOwner().equals(s.getOwner())){
-                    renvoi=false;
+    public boolean sontAligne(int slot) {
+        List<Slot> map = this.concat2DList();
+        Joueur j = map.get(slot).getOwner();
+        // Ligne horizontal
+        switch(slot % 3) {
+            case 0 -> {
+                if(j.equals(map.get(slot + 1).getOwner()) && j.equals(map.get(slot + 2).getOwner())) return true;
+            }
+            case 1 -> {
+                if(j.equals(map.get(slot + 1).getOwner()) && j.equals(map.get(slot - 1).getOwner())) return true;
+            }
+            case 2 -> {
+                if(j.equals(map.get(slot - 1).getOwner()) && j.equals(map.get(slot - 2).getOwner())) return true;
+            }
+        }
+
+        //Ligne Vertical
+        for(List<Integer> line : COLUMN_CHECK) {
+            if(line.contains(slot)) {
+                List<Integer> temps = new ArrayList<>();
+                temps.addAll(line);
+                temps.remove(Integer.valueOf(slot));
+                boolean good = true;
+                for(int i : temps) {
+                    if(!j.equals(map.get(i).getOwner())) good = false;
                 }
+                return good;
             }
         }
-        else{
-            for(int i=0; i<2;i++){
-                boolean tempo = true;
-                for(int j=0; j<this.height;j++){
-                    if(!slots.get(x).get(i*3+j).getOwner().equals(s.getOwner())){
-                        tempo=false;
-                    }
+
+        return false;
+    }
+
+    public static List<List<Integer>> loadColumnList() {
+        List<List<Integer>> t = new ArrayList<>();
+        try(Scanner sc = new Scanner(new File("resources/columnChecker.csv"))) {
+            while(sc.hasNextLine()) {
+                String[] line = sc.nextLine().split(",");
+                List<Integer> columnLine = new ArrayList<>();
+                for(String s : line) {
+                    columnLine.add(Integer.parseInt(s));
                 }
-                if(tempo){
-                    renvoi=tempo;
-                }
+                t.add(columnLine);
             }
-        }
-        if(renvoi){
-            return renvoi;
-        }
-        for(int i=0;i<this.height;i++){
-            renvoi = true;
-            for(int j=0;j<this.height;j++){
-                if(!slots.get(j*(3-i)).get(i).getOwner().equals(s.getOwner())){
-                    renvoi=false;
-                }
-            }
-            if(renvoi){
-                return renvoi;
-            }
-            for(int j=0;j<this.height;j++){
-                if(!slots.get(j*(3-i)).get(this.height*2+1-i).getOwner().equals(s.getOwner())){
-                    renvoi=false;
-                }
-            }
-            if(renvoi){
-                return renvoi;
-            }
-        }
-        for(int i=0; i<this.height;i++){
-        boolean check1=true;
-        boolean check2=true;
-        if(!slots.get(i).get(2).equals(s.getOwner())){
-        check1=false;
-        }
-        if(!slots.get(3+i).get(2).equals(s.getOwner())){
-        check2=false;
-        }
-        if(check1||check2){
-        return true;
-        }
-        }
-            return false;
-        }
+        } catch(Exception ignored) {}
+        return t;
+    }
 
     public Joueur getJoueurOnSlot(int i) {
         return this.concat2DList().get(i).getOwner();
