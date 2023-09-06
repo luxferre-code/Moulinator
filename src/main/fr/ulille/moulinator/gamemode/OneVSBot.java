@@ -17,16 +17,16 @@ public class OneVSBot implements GameMode {
         Scanner sc = Game.SCANNER;
         boolean valide = false;
         while (!valide){
-            System.out.println("Avez vous bien créer votre joueur oui/non : "  + Game.p1.toStringName());
+            System.out.println("Have you created your desired player yes/no : "  + Game.p1.toStringName());
             String choix = sc.next();
-            if (choix.toLowerCase().contains("non")){
+            if (choix.toLowerCase().contains("no")){
                 Game.p1.getColor().setUsed(false);
                 Game.p2.getColor().setUsed(false);
                 run();
-            } else if (choix.toLowerCase().contains("oui")){
+            } else if (choix.toLowerCase().contains("yes")){
                 valide = true;
             } else {
-                System.out.println("Choix invalide");
+                System.out.println("Invalid choice");
             }
 
         }
