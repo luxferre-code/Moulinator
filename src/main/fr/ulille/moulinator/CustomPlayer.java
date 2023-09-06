@@ -22,8 +22,11 @@ public class CustomPlayer {
         }
         boolean choisie = false;
         while(!choisie) {
-            System.out.println("Choisissez une couleur parmis celles-ci:");
+            System.out.println("Choisissez une couleur parmis celles-ci ou appuyez sur z pour revenir en arrière:");
             color = sc.next();
+            if(color.contains("z")){
+                return CustomPlayer.makePlayer();
+            } 
             if(colors.contains(Integer.parseInt(color))) {
                 choisie = true;
             } else {

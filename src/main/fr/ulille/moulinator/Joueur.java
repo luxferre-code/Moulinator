@@ -183,6 +183,10 @@ public sealed class Joueur implements Serializable permits Bot {
         return  this.color + "X" + Color.ANSI_RESET;
     }
 
+    public String toStringName(){
+        return  this.color + this.NAME + Color.ANSI_RESET;
+    }
+
     protected void addPiecePlaced(){
         if(!this.allPlaced) this.nbPiecePlaced++;
         if(this.nbPiecePlaced == NB_MAX_PIECE) this.allPlaced = true;
@@ -194,6 +198,10 @@ public sealed class Joueur implements Serializable permits Bot {
 
     public boolean isDead(){
         return Game.Board.allPositionPlayer(this).size() <= 2 && this.allPlaced;
+    }
+
+    public Color getColor() {
+        return color;
     }
 
     public static void main(String[] args) {

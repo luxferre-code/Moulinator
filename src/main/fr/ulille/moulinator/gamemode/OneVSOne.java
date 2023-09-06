@@ -1,5 +1,8 @@
 package fr.ulille.moulinator.gamemode;
 
+import java.util.Scanner;
+
+import fr.ulille.moulinator.Color;
 import fr.ulille.moulinator.CustomPlayer;
 import fr.ulille.moulinator.Game;
 import fr.ulille.moulinator.Joueur;
@@ -12,6 +15,22 @@ public class OneVSOne implements GameMode{
         Game.p1 = CustomPlayer.makePlayer();
         System.out.println("Joueur 2 :");
         Game.p2 = CustomPlayer.makePlayer();
+        Scanner sc = Game.SCANNER;
+        boolean valide = false;
+        while (!valide){
+            System.out.println("Avez vous bien créer vos joueurs oui/non : "  + Game.p1.toStringName() + "  " + Game.p2.toStringName());
+            String choix = sc.next();
+            if (choix.toLowerCase().contains("non")){
+                Game.p1.getColor().setUsed(false);
+                Game.p2.getColor().setUsed(false);
+                run();
+            } else if (choix.toLowerCase().contains("oui")){
+                valide = true;
+            } else {
+                System.out.println("Choix invalide");
+            }
+
+        }
         Game.clearScreen();
         while(!Game.p1.isDead() || !Game.p2.isDead()) {
             Joueur p = Game.isPlayer1Turn ? Game.p1 : Game.p2;
