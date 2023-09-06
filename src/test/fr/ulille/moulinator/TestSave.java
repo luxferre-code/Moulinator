@@ -1,4 +1,4 @@
-package test.fr.ulille.moulinator;
+package fr.ulille.moulinator;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -11,7 +11,7 @@ import fr.ulille.moulinator.Joueur;
 public class TestSave {
 
     public static void load() {
-        Game g = Game.loadGame(LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) + ".ser");
+        Game g = Game.loadGame();
         System.out.println(g);
     }
 

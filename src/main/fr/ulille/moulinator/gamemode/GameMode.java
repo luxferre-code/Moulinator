@@ -2,6 +2,9 @@ package fr.ulille.moulinator.gamemode;
 
 public interface GameMode {
 
-    void run();
+    default void run() {
+        this.run(false);
+    }
+    void run(boolean isSave);
 
 }

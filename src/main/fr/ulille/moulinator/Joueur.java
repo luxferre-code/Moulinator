@@ -4,7 +4,6 @@ package fr.ulille.moulinator;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * <p>La classe qui initialise des joueur</p>
@@ -48,6 +47,31 @@ public sealed class Joueur implements Serializable permits Bot {
     }
     public String getName(){
         return this.NAME;
+    }
+
+    private boolean executeCommand(String cmd) {
+        switch(cmd) {
+            case "save" -> {
+                if(new Game().saveGame()) {
+                    Game.info("Game saved successfully !");
+                } else {
+                    Game.logger("Error while saving game !");
+                }
+                return true;
+            }
+            case "quit" -> {
+                Game.info("Goodbye ! :P");
+                System.exit(0);
+                return true;
+            }
+            case "menu" -> {
+                try {
+                    Menu.execute();
+                } catch(Exception ignored) { }
+                System.exit(0);
+            }
+        }
+        return false;
     }
 
     public boolean choose() {
@@ -126,8 +150,10 @@ public sealed class Joueur implements Serializable permits Bot {
         System.out.print("Choose a slot to move: ");
         char c;
         do {
-            c = Game.SCANNER.next().charAt(0);
+            String s = Game.SCANNER.next();
+            c = s.charAt(0);
             c = removeMaj(c);
+            this.executeCommand(s);
             if(!chooseIsValid(c)) {
                 Game.logger("Invalid slot !");
             }
@@ -143,8 +169,10 @@ public sealed class Joueur implements Serializable permits Bot {
         System.out.print("Choose a slot to move " + possibility.toString().replace("[", "(").replace("]", ")") + ": ");
         char c;
         do {
-            c = Game.SCANNER.next().charAt(0);
+            String s = Game.SCANNER.next();
+            c = s.charAt(0);
             c = removeMaj(c);
+            this.executeCommand(s);
             if(c == 'z') {
                 return -1;
             }
@@ -166,8 +194,10 @@ public sealed class Joueur implements Serializable permits Bot {
         System.out.print("Choose a slot to place " + possibility.toString().replace("[", "(").replace("]", ")") + ": ");
         char c;
         do {
-            c = Game.SCANNER.next().charAt(0);
+            String s = Game.SCANNER.next();
+            c = s.charAt(0);
             c = removeMaj(c);
+            this.executeCommand(s);
             if(!chooseIsValid(c)) {
                 Game.logger("Invalid slot !");
             }

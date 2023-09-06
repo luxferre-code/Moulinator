@@ -4,74 +4,6 @@ import java.util.Scanner;
 import java.io.*;
 
 public class Menu {
-    /*public void choose() throws IOException{
-        File f=new File("Logo.txt");
-        FileReader fr= new FileReader(f);
-        BufferedReader br = new BufferedReader(fr);  
-        StringBuffer sb = new StringBuffer();    
-        String line;
-        while((line = br.readLine()) != null){
-            sb.append(line);      
-            sb.append("\n");     
-        }
-        fr.close();
-        System.out.println(sb);
-        Scanner sc = new Scanner(Game.INPUT_STREAM);
-        String str="0";
-        while(!str.equals("1") && !str.equals("2") && !str.equals("3") && !str.equals("4"  )  && !str.equals("5")){
-            System.out.println("Choose a Gamemode: \n1. Play with a player \n2. Play with a bot \n3. Bot vs Bot \n4. Regles du jeu \n5. Exit");
-            str = sc.next();
-        }
-        if(str.equals("1")){
-            System.out.println("Lance un 1V1");
-        }
-            if(str.equals("2")){
-                str="0";
-                while(!str.equals("1") && !str.equals("2")){
-                    System.out.println("Choose the bot: \n1. Easy bot \n2. Hard bot");
-                    str = sc.next(); 
-                }
-                if(str.equals("1")){
-                    System.out.println("Bot simple");
-                }
-                else{
-                    System.out.println("Bot hard");
-                }
-            }
-            if (str.equals("3")) {
-                while(!str.equals("1") && !str.equals("2")){
-                    System.out.println("Choose the bots: \n1. Easy bots \n2. Hard bots");
-                    str = sc.next(); 
-                }
-                if(str.equals("1")){
-                    System.out.println("Bots simple");
-                }
-                else{
-                    System.out.println("Bots3 hard");
-                    }
-            } 
-            if(str.equals("4")){
-                System.out.println("Régles du jeu");
-                File f2= new File("regles.txt");
-                FileReader fr2= new FileReader(f2);
-                BufferedReader br2 = new BufferedReader(fr2);     
-                String line2;
-                while((line2 = br2.readLine()) != null){
-                    System.out.println(line2);
-                }
-                fr2.close();
-                try(Scanner sc2 = new Scanner(Game.INPUT_STREAM)) {
-                    System.out.println("Appuyez sur entrée pour continuer");
-                    sc2.nextLine();
-                }
-            }
-            
-            if(str.equals("5")){
-                    System.out.println("Au revoir");
-                    System.exit(0);
-            }
-        choose();
-    }*/
 
     private static int choose(int min, int max) throws InterruptedException {
         Thread.sleep(500);
@@ -100,7 +32,8 @@ public class Menu {
                            "\n2. Jouer contre un bot" +
                            "\n3. Bot vs Bot" +
                            "\n4. Règles du jeu" +
-                           "\n5. Quitter");
+                           "\n5. Charger une partie" +
+                           "\n6. Quitter");
 
         int choice = choose(1, 5);
         switch(choice) {
@@ -131,6 +64,18 @@ public class Menu {
                 execute();
             }
             case 5 -> {
+                Game.info("Chargement de la partie...");
+                Game g = Game.loadGame();
+                System.out.println(g);
+                if(g == null) {
+                    Game.logger("No save found !");
+                    execute();
+                } else {
+                    Game.info("Partie chargée avec succès !");
+                    Game.startGame();
+                }
+            }
+            case 6 -> {
                 System.out.println("Au revoir");
                 System.exit(0);
             }
