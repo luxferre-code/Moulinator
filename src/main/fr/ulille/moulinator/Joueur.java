@@ -16,8 +16,19 @@ import java.util.List;
  */
     
 public sealed class Joueur implements Serializable permits Bot {
+    /**
+     * String : le nom du joueur
+     */
     public final String NAME;
+
+    /**
+     * Color : la couleur du joueur
+     */
     private Color color;
+
+    /**
+     * Color : la couleur par defaut du joueur
+     */
     private static final Color BASE_COLOR = Color.ANSI_RED;
     public int onBoard;
     public boolean allPlaced;
@@ -103,6 +114,7 @@ public sealed class Joueur implements Serializable permits Bot {
      * Methode qui verifie la couleur du joueur
      * @param myColor : la couleur du joueur
      * @return boolean : si la couleur est celle du joueur
+     * @see Color
      */
     public boolean chooseIsYours(Color myColor){
         if(this.color.equals(myColor)){
@@ -150,7 +162,7 @@ public sealed class Joueur implements Serializable permits Bot {
     }
 
     /**
-     * @param slot
+     * @param slot : la position du slot choisi par le joueur
      * @return int : la position du slot sur le plateau où le joueur veux déplacer son pion
      * @throws SlotHavingOwnerException : Le slot choisie est déjà possédé par un joueur ou est déjà occupé
      */

@@ -15,10 +15,19 @@ import java.util.*;
  */
 public class Board implements Iterable<Slot>, Serializable {
 
+    /**
+     * int : les dimensions du plateau
+     */
     public int height, width;
+
+    /**
+     * List&lt;List&lt;Slot&gt;&gt; : la liste des slots du plateau
+     */
     private List<List<Slot>> slots;
+
     private static final int DEFAULT_HEIGHT = 3;
     private static final int DEFAULT_WIDTH = 3;
+    
     public static final Map<Integer, List<Integer>> POSSIBILITY = loadPossibility();
 
     public Board(int height, int width) {
@@ -73,6 +82,12 @@ public class Board implements Iterable<Slot>, Serializable {
         return this.getSlot(width / 2, height / 2 + y);
     }
 
+    /**
+     * @param x
+     * @return List&lt;Slot&gt; : la colonne x
+     * @see Slot
+     * @see List
+     */
     public List<Slot> getColumn(int x) {
         List<Slot> column = new ArrayList<>();
         for(int i = 0; i < this.height; i++) {
@@ -82,6 +97,14 @@ public class Board implements Iterable<Slot>, Serializable {
         return column;
     }
 
+    /**
+     * @param ligne
+     * @param j
+     * @return
+     * @see Joueur
+     * @see Slot
+     * @see List
+     */
     public boolean checkLine(int ligne, Joueur j) {
         List<Slot> row = this.getRow(ligne);
         for(Slot s : row) {

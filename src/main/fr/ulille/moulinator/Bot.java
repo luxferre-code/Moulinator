@@ -38,8 +38,6 @@ public final class Bot extends Joueur {
 
     /**
      * Methode qui permet au bot de choisir un slot et de le déplacer
-     * @see
-     * @see
      * @return boolean : si le bot a réussi à jouer
      */
     public boolean choose() {
