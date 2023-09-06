@@ -18,7 +18,7 @@ public class BotVSBot implements GameMode {
             if((Game.isPlayer1Turn ? Game.p1 : Game.p2).choose()) {
                 if(Game.debugMod) System.out.println("Bot 1 => nbPiecePlaced: " + Game.Board.allPositionPlayer((Game.isPlayer1Turn ? Game.p1 : Game.p2)).size() + " allPlaced: " + (Game.isPlayer1Turn ? Game.p1 : Game.p2).allPlaced);
                 Game.isPlayer1Turn = !Game.isPlayer1Turn;
-                try { Thread.sleep(500); } catch (Exception ignored) { }
+                try { Thread.sleep(1000); } catch (Exception ignored) { }
             }
         }
         gameOver();
