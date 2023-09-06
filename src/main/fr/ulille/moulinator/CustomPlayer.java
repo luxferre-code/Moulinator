@@ -9,10 +9,10 @@ public class CustomPlayer {
     public static Joueur makePlayer() {
         Joueur j;
         Scanner sc = Game.SCANNER;
-        System.out.println("Quel est le nom du joueur ?");
+        System.out.println("What is player 1's name : ");
         String nom = sc.next();
         String color = "";
-        System.out.println("Maintenant choisis une couleur:");
+        System.out.println("Choose a color :");
         List<Integer> colors = new ArrayList<>();
         for(Color c : Color.values()) {
             if(!c.isUsed()) {
@@ -22,7 +22,7 @@ public class CustomPlayer {
         }
         boolean choisie = false;
         while(!choisie) {
-            System.out.println("Choisissez une couleur parmis celles-ci ou appuyez sur z pour revenir en arrière:");
+            System.out.println("Choose a color between the following or press z to go back to the name choice:");
             color = sc.next();
             if(color.contains("z")){
                 return CustomPlayer.makePlayer();
