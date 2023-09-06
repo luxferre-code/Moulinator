@@ -168,15 +168,18 @@ public sealed class Joueur implements Serializable permits Bot {
             possibility.add((char) (i + 'a'));
         }
         System.out.print("Choose a ennemi to remove " + possibility.toString().replace("[", "(").replace("]", ")") + ": ");
-        char c;
+        char c = '.';
         do {
-            c = Game.SCANNER.next().charAt(0);
-            c = removeMaj(c);
-            if(!chooseIsValid(c)) {
-                Game.logger("Invalid slot !");
-            }
-            else if(!possibility.contains(c)) {
-                Game.logger("Slot not ennemi !");
+            String s = Game.SCANNER.next();
+            if(!this.executeCommand(s)) {
+                c = s.charAt(0);
+                c = removeMaj(c);
+                if(!chooseIsValid(c)) {
+                    Game.logger("Invalid slot !");
+                }
+                else if(!possibility.contains(c)) {
+                    Game.logger("Slot not ennemi !");
+                }
             }
         } while(!chooseIsValid(c) && !possibility.contains(c));
         return c - 'a';
@@ -215,20 +218,21 @@ public sealed class Joueur implements Serializable permits Bot {
             possibility.add((char) (i + 'a'));
         }
         System.out.print("Choose a slot to move " + possibility.toString().replace("[", "(").replace("]", ")") + ": ");
-        char c;
+        char c = '.';
         do {
             String s = Game.SCANNER.next();
-            c = s.charAt(0);
-            c = removeMaj(c);
-            this.executeCommand(s);
-            if(c == 'z') {
-                return -1;
-            }
-            if(!chooseIsValid(c)) {
-                Game.logger("Invalid slot !");
-            }
-            else if(!possibility.contains(c)) {
-                Game.logger("Slot not free !");
+            if(!this.executeCommand(s)) {
+                c = s.charAt(0);
+                c = removeMaj(c);
+                if(c == 'z') {
+                    return -1;
+                }
+                if(!chooseIsValid(c)) {
+                    Game.logger("Invalid slot !");
+                }
+                else if(!possibility.contains(c)) {
+                    Game.logger("Slot not free !");
+                }
             }
         } while(!chooseIsValid(c) && !possibility.contains(c));
         return c - 'a';
@@ -243,18 +247,20 @@ public sealed class Joueur implements Serializable permits Bot {
             possibility.add((char) (i + 'a'));
         }
         System.out.print("Choose a slot to place " + possibility.toString().replace("[", "(").replace("]", ")") + ": ");
-        char c;
+        char c = '.';
         do {
             String s = Game.SCANNER.next();
-            c = s.charAt(0);
-            c = removeMaj(c);
-            this.executeCommand(s);
-            if(!chooseIsValid(c)) {
-                Game.logger("Invalid slot !");
+            if(!this.executeCommand(s)) {
+                c = s.charAt(0);
+                c = removeMaj(c);
+                if(!chooseIsValid(c)) {
+                    Game.logger("Invalid slot !");
+                }
+                else if(!possibility.contains(c)) {
+                    Game.logger("Slot not free !");
+                }
             }
-            else if(!possibility.contains(c)) {
-                Game.logger("Slot not free !");
-            }
+
         } while(!chooseIsValid(c) || !possibility.contains(c));
         return c - 'a';
     }
